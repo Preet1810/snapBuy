@@ -1,0 +1,51 @@
+<% layout('layouts/boilerplate')%>
+    <div class="row mt-4">
+        <h1 class="text-center">New Product</h1>
+        <div class="col-6 offset-3">
+            <form action="/products" method="POST">
+                <div class="mb-3">
+                    <label class="form-label" for="title">Product Name</label>
+                    <input class="form-control" type="text" id="title" name="product[title]">
+                </div>
+                <div class="container py-2">
+                    <div class="row">
+                        <div class="col">
+                            <select class="form-select" data-live-search="true" data-width="100%"
+                                data-show-subtext="true" name="product[category]">
+                                <option data-subtext="">Custom max height using CSS</option>
+                                <option data-subtext="mustard">Burger, Shake and a Smile</option>
+                                <option data-subtext="frosting">Sugar, Spice and all things nice</option>
+                                <option data-subtext="more">More food here</option>
+                                <option data-subtext="more1">More food here</option>
+                                <option data-subtext="more2">More food here</option>
+                                <option data-subtext="more3">More food here</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="image">Image Url</label>
+                        <input class="form-control" type="text" id="image" name="product[image]">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="price">Product Price</label>
+                        <div class="input-group">
+                            <span class="input-group-text" id="price-label">₹</span>
+                            <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price"
+                                aria-describedby="price-label" name="product[price]">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="description">Description</label>
+                        <textarea class="form-control" type="text" id="description"
+                            name="product[description]"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <button class="btn btn-success">Add Product</button>
+                    </div>
+            </form>
+            <a href="/products">All Products</a>
+        </div>
+    </div>

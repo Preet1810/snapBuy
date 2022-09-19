@@ -1,0 +1,41 @@
+<% layout('layouts/boilerplate')%>
+    <div class="row mt-4">
+        <h1 class="text-center">Edit Product</h1>
+        <div class="col-6 offset-3">
+            <form action="/products/<%=products._id%>?_method=PUT" method="POST">
+                <div class="mb-3">
+                    <label class="form-label" for="title">Product Name</label>
+                    <input class="form-control" type="text" id="title" name="products[title]"
+                        value="<%= products.title %> ">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="title">Product category</label>
+                    <input class="form-control" type="text" id="title" name="products[category]"
+                        value="<%= products.category %> ">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="image">Image Url</label>
+                    <input class="form-control" type="text" id="image" name="products[image] ">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="price">Product Price</label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="price-label">₹</span>
+                        <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price"
+                            aria-describedby="price-label" name="products[price]" value="<%= products.price %>">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="description">Description</label>
+                    <textarea class="form-control" type="text" id="description"
+                        name="products[description]"><%= products.description %> </textarea>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-success">Edit Product</button>
+                </div>
+            </form>
+            <a href="/products">All Products</a>
+        </div>
+    </div>
