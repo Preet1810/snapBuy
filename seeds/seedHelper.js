@@ -19,6 +19,10 @@ module.exports.descriptors=[
     'Diamond'
 ]
 
+module.exports.categories=[
+    'Electronics', 'Food and Beverages', 'Fashion', 'Mobiles', 'Grocery', 'Appliances', 'Books', 'Stationery And Office Supplies', 'Auto Accessories', 'Safety And Hygiene Essentials', 'Grooming', 'Sports And Fitness'
+]
+
 module.exports.places=[
     'Flats',
     'Village',

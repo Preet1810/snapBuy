@@ -1,28 +1,31 @@
 <% layout('layouts/boilerplate')%>
+
     <div class="mt-4">
-        <h1 class="">Featured Products</h1>
+        <h1 class="">
+            <%= catPage[0].categories %>
+        </h1>
         <h2><a href="/products/new">Create a product</a></h2>
         <div class="row row-cols-1 row-cols-md-3 g-4">
-            <% for(let product of products) {%>
+            <% for(let catPages of catPage) {%>
                 <div class="col">
                     <div class="card h-100">
-                        <img src="<%= product.image %> " class="card-img-top" alt="">
+                        <img src="<%= catPages.image %> " class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">
-                                <a href="/products/<%= product._id %> ">
-                                    <%= product.title %>
+                                <a href="/products/<%= catPages._id %> ">
+                                    <%= catPages.title %>
                                 </a>
                             </h5>
                             <p class="card-text">
-                                <%= product.description %>
+                                <%= catPages.description %>
                             </p>
 
-                            <b class="card-text">Category: <a href="/products/categories/<%= product.categories %>">
-                                    <%= product.categories %>
+                            <b class="card-text">Category: <a href="/products/categories/<%= catPages.categories %>">
+                                    <%= catPages.categories %>
                                 </a></b>
                             <p class="card-text">
                                 <b>
-                                    <%= product.sellerName %> Group
+                                    <%= catPages.sellerName %> Group
                                 </b>
                             </p>
 

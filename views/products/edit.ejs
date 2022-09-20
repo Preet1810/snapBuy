@@ -2,35 +2,48 @@
     <div class="row mt-4">
         <h1 class="text-center">Edit Product</h1>
         <div class="col-6 offset-3">
-            <form action="/products/<%=products._id%>?_method=PUT" method="POST">
+            <form action="/products/<%=product._id%>?_method=PUT" method="POST" novalidate class="needs-validation">
                 <div class="mb-3">
                     <label class="form-label" for="title">Product Name</label>
-                    <input class="form-control" type="text" id="title" name="products[title]"
-                        value="<%= products.title %> ">
+                    <input class="form-control" type="text" id="title" name="product[title]"
+                        value="<%= product.title %> " required>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label" for="title">Product category</label>
-                    <input class="form-control" type="text" id="title" name="products[category]"
-                        value="<%= products.category %> ">
+                    <label for="selec_box">Select Category</label>
+                    <select class="form-select mt-2" name="product[categories]" id="select_box"
+                        value="<%= product.categories %> ">
+                        <option data-subtext="custom">Electronics</option>
+                        <option data-subtext="mustard">Food and Beverages</option>
+                        <option data-subtext="frosting">Fashion</option>
+                        <option data-subtext="more">Mobiles</option>
+                        <option data-subtext="more1">Grocery</option>
+                        <option data-subtext="more2">Appliances</option>
+                        <option data-subtext="more3">Books</option>
+                        <option data-subtext="more3">Stationery And Office Supplies</option>
+                        <option data-subtext="more3">Auto Accessories</option>
+                        <option data-subtext="more3">Safety And Hygiene Essentials</option>
+                        <option data-subtext="more3">Grooming</option>
+                        <option data-subtext="more3">Sports And Fitness</option>
+                    </select>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="image">Image Url</label>
-                    <input class="form-control" type="text" id="image" name="products[image] ">
+                    <input class="form-control" type="text" id="image" name="product[image] " required>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="price">Product Price</label>
                     <div class="input-group">
                         <span class="input-group-text" id="price-label">₹</span>
                         <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price"
-                            aria-describedby="price-label" name="products[price]" value="<%= products.price %>">
+                            aria-describedby="price-label" name="product[price]" value="<%= product.price %>" required>
                     </div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="description">Description</label>
-                    <textarea class="form-control" type="text" id="description"
-                        name="products[description]"><%= products.description %> </textarea>
+                    <textarea class="form-control" type="text" id="description" name="product[description]"
+                        required><%= product.description %> </textarea>
                 </div>
                 <div class="mb-3">
                     <button class="btn btn-success">Edit Product</button>

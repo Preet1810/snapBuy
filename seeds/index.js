@@ -1,7 +1,8 @@
 const mongoose=require('mongoose');
 const cities=require('./cities');
-const { places, descriptors }=require('./seedHelper');
+const { places, descriptors, categories }=require('./seedHelper');
 const Product=require('../model/products');
+// const Category=require('../model/categories');
 
 mongoose.connect('mongodb://localhost:27017/snapbuy', {
     useNewUrlParser: true,
@@ -28,11 +29,17 @@ const seedDB=async () => {
             image: 'https://www.junglescout.com/wp-content/uploads/2021/01/product-photo-water-bottle-hero.png',
             description: 'Voluptate placeat corporis et voluptatem qui id eveniet perspiciatis exercitationem, natus quibusdam dolorem dignissimos eaque provident. Quis a totam earum architecto dignissimos. Cupiditate ipsa officia maxime quaerat saepe autem modi!Maiores aut aperiam eos !',
             price,
-            category: `${sample(descriptors)}`,
             sellerName: `${sample(descriptors)}`,
+            categories: `${sample(categories)}`
 
         })
+        // const categ=new Category({
+        //     name: `${sample(descriptors)}`
+        // })
+        // prudu.categories.push(categ);
+        // await categ.save();
         await prudu.save();
+
     }
 }
 
