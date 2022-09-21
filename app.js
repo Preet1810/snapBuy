@@ -3,11 +3,12 @@ const path=require('path');
 const mongoose=require('mongoose');
 const ejsMate=require('ejs-mate');    //for the boilerplate
 const Joi=require('joi'); //for server side validation
-const { productSchema }=require('./schemas.js');
+const { productSchema, reviewSchema }=require('./schemas.js');
 const catchAsync=require('./utils/catchAsync')
 const ExpressError=require('./utils/ExpressErrors');
 const methodOverride=require('method-override');
-const Product=require('./model/products')
+const Product=require('./model/products');
+const Review=require('./model/reviews');
 
 
 
@@ -28,6 +29,7 @@ const app=express();
 app.engine('ejs', ejsMate)  //boilerplate
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'))  //setting up views directory
+app.use(express.static(path.join(__dirname, 'public')))  //setting up public directory
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
@@ -35,6 +37,16 @@ app.use(methodOverride('_method'));
 
 const validateCampground=(req, res, next) => {
     const { error }=productSchema.validate(req.body);
+    if (error) {
+        const msg=error.details.map(el => el.message).join(',')
+        throw new ExpressError(msg, 400)
+    } else {
+        next();
+    }
+}
+
+const validateReview=(req, res, next) => {
+    const { error }=reviewSchema.validate(req.body);
     if (error) {
         const msg=error.details.map(el => el.message).join(',')
         throw new ExpressError(msg, 400)
@@ -69,7 +81,8 @@ app.post('/products', validateCampground, catchAsync(async (req, res, next) => {
 }))
 
 app.get('/products/:id', catchAsync(async (req, res) => {
-    const product=await Product.findById(req.params.id)       //show page
+    const product=await Product.findById(req.params.id).populate('reviews')     //show page  populating reviews so that those object id will also have the body of review
+    // console.log(product);
     res.render('products/show', { product });
 }))
 
@@ -89,6 +102,24 @@ app.delete('/products/:id', async (req, res) => {
     await Product.findByIdAndDelete(id);        //delete
     res.redirect('/products');
 })
+
+app.post('/products/:id/reviews', validateReview, catchAsync(async (req, res) => {
+    const product=await Product.findById(req.params.id)
+    const review=new Review(req.body.review);
+    product.reviews.push(review);
+    await product.save();
+    await review.save();
+    res.redirect(`/products/${product._id}`);
+}))
+
+app.delete('/products/:id/reviews/:reviewid', catchAsync(async (req, res) => {
+    const { id, reviewid }=req.params;
+    await Product.findByIdAndUpdate(id, { $pull: { reviews: reviewid } }); //in campground pulling from the reviews array where we have reviewid
+    await Review.findByIdAndDelete(reviewid);
+    res.redirect(`/products/${id}`);
+
+}))
+
 
 app.all('*', (req, res, next) => {
     next(new ExpressError('Page Not Found', 404))

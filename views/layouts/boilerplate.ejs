@@ -6,10 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SnapBuy</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://unpkg.com/@jarstone/dselect/dist/css/dselect.css">
     <!-- crossorigin="anonymous" -->
+
 </head>
 
 <body class="d-flex flex-column vh-100">
@@ -28,37 +29,27 @@
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
                 integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
                 crossorigin="anonymous"></script>
-            <script src="https://unpkg.com/@jarstone/dselect/dist/js/dselect.js"></script>
 
-            <script> const config={
-                    search: true, // Toggle search feature. Default: false
-                    creatable: false, // Creatable selection. Default: false
-                    clearable: true, // Clearable selection. Default: false
-                    maxHeight: '180px', // Max height for showing scrollbar. Default: 360px
-                    size: '', // Can be "sm" or "lg". Default ''
-                }
-                dselect(document.querySelector('#select_box'), config)</script>
             <script>
-                    (() => {
-                        'use strict'
+                (() => {
+                    'use strict'
 
-                        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                        const forms=document.querySelectorAll('.needs-validation')
+                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                    const forms=document.querySelectorAll('.needs-validation')
 
-                        // Loop over them and prevent submission
-                        Array.from(forms).forEach(form => {
-                            form.addEventListener('submit', event => {
-                                if (!form.checkValidity()) {
-                                    event.preventDefault()
-                                    event.stopPropagation()
-                                }
+                    // Loop over them and prevent submission
+                    Array.from(forms).forEach(form => {
+                        form.addEventListener('submit', event => {
+                            if (!form.checkValidity()) {
+                                event.preventDefault()
+                                event.stopPropagation()
+                            }
 
-                                form.classList.add('was-validated')
-                            }, false)
-                        })
-                    })()
+                            form.classList.add('was-validated')
+                        }, false)
+                    })
+                })()
             </script>
-
 
 </body>
 

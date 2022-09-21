@@ -1,4 +1,5 @@
 <% layout('layouts/boilerplate')%>
+    <link rel="stylesheet" href="https://unpkg.com/@jarstone/dselect/dist/css/dselect.css">
     <div class="row mt-4">
         <h1 class="text-center">Edit Product</h1>
         <div class="col-6 offset-3">
@@ -52,3 +53,14 @@
             <a href="/products">All Products</a>
         </div>
     </div>
+
+    <script src="https://unpkg.com/@jarstone/dselect/dist/js/dselect.js"></script>
+
+    <script> const config={
+            search: true, // Toggle search feature. Default: false
+            creatable: false, // Creatable selection. Default: false
+            clearable: true, // Clearable selection. Default: false
+            maxHeight: '180px', // Max height for showing scrollbar. Default: 360px
+            size: '', // Can be "sm" or "lg". Default ''
+        }
+        dselect(document.querySelector('#select_box'), config)</script>
