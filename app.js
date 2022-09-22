@@ -2,14 +2,13 @@ const express=require('express');
 const path=require('path');
 const mongoose=require('mongoose');
 const ejsMate=require('ejs-mate');    //for the boilerplate
-const Joi=require('joi'); //for server side validation
-const { productSchema, reviewSchema }=require('./schemas.js');
-const catchAsync=require('./utils/catchAsync')
+const session=require('express-session'); //
+const flash=require('connect-flash');
 const ExpressError=require('./utils/ExpressErrors');
 const methodOverride=require('method-override');
-const Product=require('./model/products');
-const Review=require('./model/reviews');
-
+const products=require('./routes/product');
+const categories=require('./routes/categories');
+const reviews=require('./routes/reviews');
 
 
 mongoose.connect('mongodb://localhost:27017/snapbuy', {
@@ -29,96 +28,38 @@ const app=express();
 app.engine('ejs', ejsMate)  //boilerplate
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'))  //setting up views directory
-app.use(express.static(path.join(__dirname, 'public')))  //setting up public directory
+
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
+app.use(express.static(path.join(__dirname, 'public')))  //setting up public directory
 
-
-const validateCampground=(req, res, next) => {
-    const { error }=productSchema.validate(req.body);
-    if (error) {
-        const msg=error.details.map(el => el.message).join(',')
-        throw new ExpressError(msg, 400)
-    } else {
-        next();
+const sessionConfig={
+    secret: 'Asecret',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        expires: Date.now()+1000*60*60*24*7,     //will be expired in 7 days
+        maxAge: 1000*60*60*24*7
     }
 }
+app.use(session(sessionConfig))
+app.use(flash());
 
-const validateReview=(req, res, next) => {
-    const { error }=reviewSchema.validate(req.body);
-    if (error) {
-        const msg=error.details.map(el => el.message).join(',')
-        throw new ExpressError(msg, 400)
-    } else {
-        next();
-    }
-}
+app.use((req, res, next) => {
+    res.locals.success=req.flash('success');
+    next();
+})
+
+
+
+app.use('/products', products);
+app.use('/products/categories', categories);
+app.use('/products/:id/reviews', reviews)
 
 app.get('/', (req, res) => {
     res.render('home')
 })
-
-app.get('/products', catchAsync(async (req, res) => {
-    const products=await Product.find({})                           //all products
-    res.render('products/index', { products });
-}))
-app.get('/products/new', catchAsync(async (req, res) => {                          //new product page
-    res.render('products/new');
-}))
-
-app.get('/products/categories/:id', catchAsync(async (req, res) => {
-    const { id }=req.params;
-    const catPage=await Product.find({ categories: `${id}` })
-    res.render('products/category', { catPage });
-}))
-
-app.post('/products', validateCampground, catchAsync(async (req, res, next) => {
-    const product=new Product(req.body.product);
-    await product.save();                                       //CREATING NEW PRODUCT
-    res.redirect(`/products/${product._id}`)
-
-}))
-
-app.get('/products/:id', catchAsync(async (req, res) => {
-    const product=await Product.findById(req.params.id).populate('reviews')     //show page  populating reviews so that those object id will also have the body of review
-    // console.log(product);
-    res.render('products/show', { product });
-}))
-
-app.get('/products/:id/edit', catchAsync(async (req, res) => {
-    const product=await Product.findById(req.params.id)      //edit form
-    res.render('products/edit', { product });
-}))
-
-app.put('/products/:id', validateCampground, catchAsync(async (req, res) => {
-    const { id }=req.params;
-    const product=await Product.findByIdAndUpdate(id, { ...req.body.product });   //editing
-    res.redirect(`/products/${product._id}`)
-}));
-
-app.delete('/products/:id', async (req, res) => {
-    const { id }=req.params;
-    await Product.findByIdAndDelete(id);        //delete
-    res.redirect('/products');
-})
-
-app.post('/products/:id/reviews', validateReview, catchAsync(async (req, res) => {
-    const product=await Product.findById(req.params.id)
-    const review=new Review(req.body.review);
-    product.reviews.push(review);
-    await product.save();
-    await review.save();
-    res.redirect(`/products/${product._id}`);
-}))
-
-app.delete('/products/:id/reviews/:reviewid', catchAsync(async (req, res) => {
-    const { id, reviewid }=req.params;
-    await Product.findByIdAndUpdate(id, { $pull: { reviews: reviewid } }); //in campground pulling from the reviews array where we have reviewid
-    await Review.findByIdAndDelete(reviewid);
-    res.redirect(`/products/${id}`);
-
-}))
 
 
 app.all('*', (req, res, next) => {
