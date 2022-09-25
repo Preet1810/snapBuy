@@ -24,6 +24,7 @@ route.post('/', validateReview, catchAsync(async (req, res) => {
     product.reviews.push(review);
     await product.save();
     await review.save();
+    req.flash('success', 'Successfully Made A New Review');
     res.redirect(`/products/${product._id}`);
 }))
 
@@ -31,6 +32,7 @@ route.delete('/:reviewid', catchAsync(async (req, res) => {
     const { id, reviewid }=req.params;
     await Product.findByIdAndUpdate(id, { $pull: { reviews: reviewid } }); //in campground pulling from the reviews array where we have reviewid
     await Review.findByIdAndDelete(reviewid);
+    req.flash('success', 'Successfully Deleted a Review');
     res.redirect(`/products/${id}`);
 
 }))

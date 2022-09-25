@@ -33,24 +33,33 @@ route.post('/', validateCampground, catchAsync(async (req, res, next) => {
 
 route.get('/:id', catchAsync(async (req, res) => {
     const product=await Product.findById(req.params.id).populate('reviews')     //show page  populating reviews so that those object id will also have the body of review
-    // console.log(product);
+    if (!product) {
+        req.flash('error', 'Cannot find that Product!');
+        return res.redirect('/products')
+    }
     res.render('products/show', { product });
 }))
 
 route.get('/:id/edit', catchAsync(async (req, res) => {
     const product=await Product.findById(req.params.id)      //edit form
+    if (!product) {
+        req.flash('error', 'Cannot find that Product!');
+        return res.redirect('/products')
+    }
     res.render('products/edit', { product });
 }))
 
 route.put('/:id', validateCampground, catchAsync(async (req, res) => {
     const { id }=req.params;
     const product=await Product.findByIdAndUpdate(id, { ...req.body.product });   //editing
+    req.flash('success', 'Successfully Edited the Product');
     res.redirect(`/products/${product._id}`)
 }));
 
 route.delete('/:id', async (req, res) => {
     const { id }=req.params;
     await Product.findByIdAndDelete(id);        //delete
+    req.flash('success', 'Successfully Deleted');
     res.redirect('/products');
 })
 
