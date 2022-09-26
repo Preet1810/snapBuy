@@ -6,9 +6,15 @@ const session=require('express-session'); //
 const flash=require('connect-flash');
 const ExpressError=require('./utils/ExpressErrors');
 const methodOverride=require('method-override');
+
 const products=require('./routes/product');
 const categories=require('./routes/categories');
 const reviews=require('./routes/reviews');
+const userRoutes=require('./routes/users')
+const passport=require('passport');
+const LocalStrategy=require('passport-local');
+const User=require('./model/user')
+
 
 
 mongoose.connect('mongodb://localhost:27017/snapbuy', {
@@ -46,17 +52,27 @@ const sessionConfig={
 app.use(session(sessionConfig))
 app.use(flash());
 
-app.use((req, res, next) => {
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+app.use((req, res, next) => {                              //these are globals, i have access to them in everysingle template
+    // console.log(req.session)
+    res.locals.currentUser=req.user;
     res.locals.success=req.flash('success');
     res.locals.error=req.flash('error');
     next();
 })
 
 
-
+app.use('/', userRoutes);
 app.use('/products', products);
 app.use('/products/categories', categories);
 app.use('/products/:id/reviews', reviews)
+
 
 app.get('/', (req, res) => {
     res.render('home')
