@@ -13,7 +13,8 @@ const reviews=require('./routes/reviews');
 const userRoutes=require('./routes/users')
 const passport=require('passport');
 const LocalStrategy=require('passport-local');
-const User=require('./model/user')
+const User=require('./model/user');
+const Seller=require('./model/seller');
 
 
 
@@ -54,18 +55,25 @@ app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());
+
 passport.use(new LocalStrategy(User.authenticate()));
+passport.use(new LocalStrategy(Seller.authenticate()));
+
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+passport.serializeUser(Seller.serializeUser());
+passport.deserializeUser(Seller.deserializeUser());
+
 app.use((req, res, next) => {                              //these are globals, i have access to them in everysingle template
-    // console.log(req.session)
+    console.log(req.user)
     res.locals.currentUser=req.user;
     res.locals.success=req.flash('success');
     res.locals.error=req.flash('error');
     next();
 })
+
 
 
 app.use('/', userRoutes);

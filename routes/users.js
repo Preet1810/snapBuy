@@ -6,10 +6,14 @@ const User=require('../model/user');
 const catchAsync=require('../utils/catchAsync')
 
 route.get('/register', (req, res) => {
-    res.render('users/register')
+    res.render('users/middleFile')
 })
 
-route.post('/register', catchAsync(async (req, res, next) => {
+route.get('/register/buyer', (req, res) => {
+    res.render('users/buyerRegister')
+})
+
+route.post('/register/buyer', catchAsync(async (req, res, next) => {
     try {
         const { email, username, password }=req.body;
         const user=new User({ email, username });
@@ -21,7 +25,7 @@ route.post('/register', catchAsync(async (req, res, next) => {
         })
     } catch (e) {
         req.flash('error', e.message);
-        res.redirect('/register')
+        res.redirect('/register/buyer')
     }
 }));
 

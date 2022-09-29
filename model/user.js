@@ -10,6 +10,7 @@ const UserSchema=new Schema({
     }
 });
 
+
 UserSchema.plugin(passportLocalMongoose); //this will add a username, a field for password, also check for duplicates
 
 module.exports=mongoose.model('User', UserSchema);
