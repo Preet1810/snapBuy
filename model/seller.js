@@ -3,7 +3,7 @@ const Schema=mongoose.Schema;
 const passportLocalMongoose=require('passport-local-mongoose');
 
 const SellerSchema=new Schema({
-    Name: {
+    proprietorname: {
         type: String,
         required: true
     },
@@ -12,15 +12,15 @@ const SellerSchema=new Schema({
         required: true,
         unique: true
     },
-    CompanyName: {
+    companyname: {
         type: String,
         required: true
     },
-    CompanyAddress: {
+    address: {
         type: String,
         required: true
     },
-    mobileNumber: {
+    contactnumber: {
         type: Number,
         required: true
     }

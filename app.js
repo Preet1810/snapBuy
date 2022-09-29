@@ -10,7 +10,9 @@ const methodOverride=require('method-override');
 const products=require('./routes/product');
 const categories=require('./routes/categories');
 const reviews=require('./routes/reviews');
-const userRoutes=require('./routes/users')
+const userRoutes=require('./routes/users');
+const sellerRoutes=require('./routes/seller');
+
 const passport=require('passport');
 const LocalStrategy=require('passport-local');
 const User=require('./model/user');
@@ -56,8 +58,12 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use(new LocalStrategy(User.authenticate()));
-passport.use(new LocalStrategy(Seller.authenticate()));
+// passport.use(new LocalStrategy(User.authenticate(), Seller.authenticate()));
+
+// passport.use(new LocalStrategy(Seller.authenticate()));
+
+passport.use('userLocal', new LocalStrategy(User.authenticate()));
+passport.use('sellerLocal', new LocalStrategy(Seller.authenticate()));
 
 
 passport.serializeUser(User.serializeUser());
@@ -74,8 +80,7 @@ app.use((req, res, next) => {                              //these are globals, 
     next();
 })
 
-
-
+app.use('/', sellerRoutes);
 app.use('/', userRoutes);
 app.use('/products', products);
 app.use('/products/categories', categories);

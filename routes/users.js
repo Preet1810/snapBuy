@@ -7,13 +7,14 @@ const catchAsync=require('../utils/catchAsync')
 
 route.get('/register', (req, res) => {
     res.render('users/middleFile')
-})
+});
 
 route.get('/register/buyer', (req, res) => {
     res.render('users/buyerRegister')
-})
+});
 
 route.post('/register/buyer', catchAsync(async (req, res, next) => {
+    // res.send(req.body);
     try {
         const { email, username, password }=req.body;
         const user=new User({ email, username });
@@ -29,12 +30,13 @@ route.post('/register/buyer', catchAsync(async (req, res, next) => {
     }
 }));
 
-route.get('/login', (req, res) => {
-    res.render('users/login')
+
+route.get('/login/buyer', (req, res) => {
+    res.render('users/buyerLogin')
 
 })
 
-route.post('/login', passport.authenticate('local', { failureFlash: true, failureRedirect: '/login', keepSessionInfo: true, }), (req, res) => { //a authentication middleware by passport you can add google fb twiiter too insted of just local
+route.post('/login/buyer', passport.authenticate('userLocal', { failureFlash: true, failureRedirect: '/login/buyer', keepSessionInfo: true, }), (req, res) => { //a authentication middleware by passport you can add google fb twiiter too insted of just local
     req.flash('success', 'Welcome Back');
     const redirectUrl=req.session.returnTo||"/products";
     delete req.session.returnTo;
