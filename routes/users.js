@@ -1,9 +1,9 @@
-
 const express=require('express');
 const passport=require('passport');
 const route=express.Router();
 const User=require('../model/user');
 const catchAsync=require('../utils/catchAsync')
+const { find }=require('../middleware');
 
 route.get('/register', (req, res) => {
     res.render('users/middleFile')
@@ -37,6 +37,7 @@ route.get('/login/buyer', (req, res) => {
 })
 
 route.post('/login/buyer', passport.authenticate('userLocal', { failureFlash: true, failureRedirect: '/login/buyer', keepSessionInfo: true, }), (req, res) => { //a authentication middleware by passport you can add google fb twiiter too insted of just local
+    // req.user.isBuyer=true;
     req.flash('success', 'Welcome Back');
     const redirectUrl=req.session.returnTo||"/products";
     delete req.session.returnTo;

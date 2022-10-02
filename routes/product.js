@@ -14,8 +14,9 @@ route.get('/new', isLoggedIn, (req, res) => {                          //new pro
 })
 
 route.post('/', isLoggedIn, validateCampground, catchAsync(async (req, res, next) => {
-    const product=new Product(req.body.product);              //CREATING NEW PRODUCT
+    const product=new Product(req.body.product);              //CREATING NEW PRODUCT 63355666d4c25e7696191ba2
     product.author=req.user._id;
+    console.log(product.author);
     await product.save();
     req.flash('success', 'Successfully Made A New Product');    //FLASH
     res.redirect(`/products/${product._id}`)
@@ -28,7 +29,7 @@ route.get('/:id', catchAsync(async (req, res) => {
         populate: {
             path: 'author'
         }
-    }).populate('author');                //show page  populating reviews so that those object id will also have the body of review
+    }).populate('author');              //show page  populating reviews so that those object id will also have the body of review
     if (!product) {
         req.flash('error', 'Cannot find that Product!');
         return res.redirect('/products')

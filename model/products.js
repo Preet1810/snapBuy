@@ -18,7 +18,7 @@ const ProductSchema=new Schema({
     ],
     author: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'Seller'
     }
 
 });

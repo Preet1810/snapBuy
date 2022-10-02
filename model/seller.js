@@ -23,6 +23,10 @@ const SellerSchema=new Schema({
     contactnumber: {
         type: Number,
         required: true
+    },
+    isSeller: {
+        type: Boolean,
+        default: false
     }
 
 });

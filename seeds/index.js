@@ -24,7 +24,7 @@ const seedDB=async () => {
         const random1000=Math.floor(Math.random()*199);
         const price=Math.floor(Math.random()*30)
         const prudu=new Product({
-            author: '6331296fc17511a9115b8737',
+            author: '63355666d4c25e7696191ba2',
             location: `${cities[random1000].name}, ${cities[random1000].state}`,
             title: `${sample(descriptors)} ${sample(places)}`,
             image: 'https://www.junglescout.com/wp-content/uploads/2021/01/product-photo-water-bottle-hero.png',

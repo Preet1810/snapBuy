@@ -20,10 +20,10 @@
                             Category: <%= product.categories%>
                         </li>
                         <li class="list-group-item">
-                            Seller: <%= product.author.username%>
+                            Seller: <%= product.author.companyname%>
                         </li>
                     </ul>
-                    <% if(currentUser && product.author.equals(currentUser._id)) {%>
+                    <% if(currentUser && product.author.equals(currentUser._id)){%>
                         <div class="card-body">
                             <a class="card-link btn btn-info" href="/products/<%= product._id %>/edit ">Edit</a>
                             <form class="d-inline" action="/products/<%=product._id%>?_method=DELETE" method="POST"

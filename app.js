@@ -15,8 +15,12 @@ const sellerRoutes=require('./routes/seller');
 
 const passport=require('passport');
 const LocalStrategy=require('passport-local');
+
 const User=require('./model/user');
 const Seller=require('./model/seller');
+
+// const { find, moreFind }=require('./middleware');
+
 
 
 
@@ -65,16 +69,33 @@ app.use(passport.session());
 passport.use('userLocal', new LocalStrategy(User.authenticate()));
 passport.use('sellerLocal', new LocalStrategy(Seller.authenticate()));
 
+passport.serializeUser(function (user, done) {
+    done(null, user);
+});
 
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+passport.deserializeUser(function (user, done) {
+    if (user!=null)
+        done(null, user);
+});
 
-passport.serializeUser(Seller.serializeUser());
-passport.deserializeUser(Seller.deserializeUser());
+// passport.serializeUser(Seller.serializeUser(), User.serializeUser());
+// passport.deserializeUser(Seller.deserializeUser(), User.deserializeUser());
 
-app.use((req, res, next) => {                              //these are globals, i have access to them in everysingle template
-    console.log(req.user)
-    res.locals.currentUser=req.user;
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
+// const idk=async (req, res, next) => {
+//     if (User.authenticate()) {
+//         res.locals.currentBuyer=req.user;
+//     }
+//     // res.locals.currentSeller=req.user;
+//     console.log(res.locals.currentBuyer);
+//     next();
+// }
+
+
+app.use((req, res, next) => {                             //these are globals, i have access to them in everysingle template
+    res.locals.currentUser=req.user
+    console.log(res.locals.currentUser);
     res.locals.success=req.flash('success');
     res.locals.error=req.flash('error');
     next();
@@ -85,6 +106,7 @@ app.use('/', userRoutes);
 app.use('/products', products);
 app.use('/products/categories', categories);
 app.use('/products/:id/reviews', reviews)
+
 
 
 app.get('/', (req, res) => {

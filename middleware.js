@@ -2,6 +2,9 @@ const Product=require('./model/products');
 const Review=require('./model/reviews');
 const ExpressError=require('./utils/ExpressErrors');
 const { productSchema, reviewSchema }=require('./schemas.js');
+const User=require('./model/user');
+const Seller=require('./model/seller');
+const passport=require('passport');
 
 
 
@@ -45,6 +48,7 @@ module.exports.isAuthor=async (req, res, next) => {
     next();
 }
 
+
 module.exports.isReviewAuthor=async (req, res, next) => {
     const { id, reviewid }=req.params;
     const review=await Review.findById(reviewid);
@@ -54,3 +58,28 @@ module.exports.isReviewAuthor=async (req, res, next) => {
     }
     next();
 }
+
+
+// module.exports.find=async (req, res, next) => {
+//     if (req.isAuthenticated()) {
+//         if (req.user.isBuyer) {
+//             res.locals.currentBuyer=req.user
+//             // res.locals.currentSeller=undefined
+//         }
+//         else if (req.user.isSeller) {
+//             // let currentBuyer=req.user
+//             // res.locals.currentBuyer=req.user
+//             res.locals.currentSeller=req.user
+//         }
+//     }
+//     next();
+// }
+
+// module.exports.moreFind=async (req, res, next) => {
+//     if (!req.isAuthenticated()) {
+//         res.locals.currentBuyer=req.user
+//         res.locals.currentSeller=req.user
+//     }
+//     next();
+// }
+
