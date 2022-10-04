@@ -27,8 +27,10 @@ const SellerSchema=new Schema({
     isSeller: {
         type: Boolean,
         default: false
-    }
-
+    },
+    image: String,
+    aboutcompany: String,
+    nature: String
 });
 
 SellerSchema.plugin(passportLocalMongoose);

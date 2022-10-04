@@ -12,6 +12,7 @@ const categories=require('./routes/categories');
 const reviews=require('./routes/reviews');
 const userRoutes=require('./routes/users');
 const sellerRoutes=require('./routes/seller');
+const dashboardRoutes=require('./routes/main')
 
 const passport=require('passport');
 const LocalStrategy=require('passport-local');
@@ -45,7 +46,8 @@ app.set('views', path.join(__dirname, 'views'))  //setting up views directory
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
-app.use(express.static(path.join(__dirname, 'public')))  //setting up public directory
+//setting up public directory
+app.use(express.static(__dirname+'/public'));
 
 const sessionConfig={
     secret: 'Asecret',
@@ -101,6 +103,7 @@ app.use((req, res, next) => {                             //these are globals, i
     next();
 })
 
+app.use('/', dashboardRoutes);
 app.use('/', sellerRoutes);
 app.use('/', userRoutes);
 app.use('/products', products);

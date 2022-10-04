@@ -1,0 +1,87 @@
+<% layout('layouts/boilerplate')%>
+
+    <link rel="stylesheet" href="styleSheets/sellerprofile.css">
+
+    <ul class="nav nav-pills nav-fill mt-5">
+        <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/dashboard">Dashboard</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="/dashboard/company">Company Profile</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Products</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link">Leads</a>
+        </li>
+    </ul>
+
+    <form action="/register/seller" method="POST" class="validated-form" novalidate>
+        <h3>Business Information</h3>
+        <div class="mb-3">
+            <label class="form-label" for="proprietorname">Proprietor Name</label>
+            <input class="form-control" type="text" id="proprietorname" name="proprietorname" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="companyname">Company Name</label>
+            <input class="form-control" type="text" id="companyname" name="companyname" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="nature">Nature of Business</label>
+            <input class="form-control" type="text" id="nature" name="nature" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="image">Company Logo</label>
+            <input class="form-control" type="text" id="image" name="image" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="aboutcompany">About Company</label>
+            <textarea class="form-control" name="aboutcompany" id="aboutcompany" cols="30" rows="3" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="address">Address</label>
+            <input class="form-control" type="text" id="address" name="address" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="contactnumber">Contact Number</label>
+            <input class="form-control" type="text" id="contactnumber" name="contactnumber" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="email">Email</label>
+            <input class="form-control" type="email" id="email" name="email" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="username">Username</label>
+            <input class="form-control" type="email" id="username" name="username" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="password">Password</label>
+            <input class="form-control" type="password" id="password" name="password" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <button class="btn btn-success">Register</button>
+    </form>

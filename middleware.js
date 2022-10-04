@@ -2,9 +2,6 @@ const Product=require('./model/products');
 const Review=require('./model/reviews');
 const ExpressError=require('./utils/ExpressErrors');
 const { productSchema, reviewSchema }=require('./schemas.js');
-const User=require('./model/user');
-const Seller=require('./model/seller');
-const passport=require('passport');
 
 
 
@@ -18,7 +15,7 @@ module.exports.validateReview=(req, res, next) => {
     }
 }
 
-module.exports.validateCampground=(req, res, next) => {
+module.exports.validateProduct=(req, res, next) => {
     const { error }=productSchema.validate(req.body);
     if (error) {
         const msg=error.details.map(el => el.message).join(',')
@@ -33,7 +30,7 @@ module.exports.isLoggedIn=(req, res, next) => {
         // console.log(req.path, req.originalUrl)
         req.session.returnTo=req.originalUrl
         req.flash('error', 'You Must Be Signed In');
-        return res.redirect('/login')
+        return res.redirect('/products')
     }
     next()
 }
@@ -55,6 +52,14 @@ module.exports.isReviewAuthor=async (req, res, next) => {
     if (!review.author.equals(req.user._id)) {
         req.flash('error', 'You do not have permission to do that!');
         return res.redirect(`/products/${id}`);
+    }
+    next();
+}
+
+module.exports.isSeller=async (req, res, next) => {
+    if (!req.user.isSeller) {
+        req.flash('error', 'You do not have permission to do that!')
+        return res.redirect('/products')
     }
     next();
 }

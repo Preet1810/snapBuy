@@ -10,7 +10,7 @@ route.get('/register', (req, res) => {
 });
 
 route.get('/register/buyer', (req, res) => {
-    res.render('users/buyerRegister')
+    res.render('users/buyer/buyerRegister')
 });
 
 route.post('/register/buyer', catchAsync(async (req, res, next) => {
@@ -32,7 +32,7 @@ route.post('/register/buyer', catchAsync(async (req, res, next) => {
 
 
 route.get('/login/buyer', (req, res) => {
-    res.render('users/buyerLogin')
+    res.render('users/buyer/buyerLogin')
 
 })
 

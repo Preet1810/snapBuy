@@ -6,16 +6,17 @@ const catchAsync=require('../utils/catchAsync')
 // const { find }=require('../middleware');
 
 route.get('/register/seller', (req, res) => {
-    res.render('users/sellerRegister')
+    res.render('users/seller/sellerRegister')
 });
 
 route.post('/register/seller', catchAsync(async (req, res, next) => {
     try {
-        const { proprietorname, companyname, address, contactnumber, email, username, password }=req.body;
-        const seller=new Seller({ proprietorname, companyname, address, contactnumber, email, username });
+        const { proprietorname, companyname, address, contactnumber, email, nature, image, aboutcompany, username, password }=req.body;
+        const seller=new Seller({ proprietorname, companyname, address, contactnumber, email, nature, image, aboutcompany, username });
         const registeredSeller=await Seller.register(seller, password);
         req.login(registeredSeller, err => {                              //after registering it logins the registered user
             if (err) return next(err);
+            req.user.isSeller=true;
             req.flash('success', 'SELLER LOGIN');
             res.redirect('/products');
         })
@@ -28,7 +29,7 @@ route.post('/register/seller', catchAsync(async (req, res, next) => {
 
 
 route.get('/login/seller', (req, res) => {
-    res.render('users/sellerLogin')
+    res.render('users/seller/sellerLogin')
 
 })
 route.post('/login/seller', passport.authenticate('sellerLocal', { failureFlash: true, failureRedirect: '/login/seller', keepSessionInfo: true, }), (req, res) => { //a authentication middleware by passport you can add google fb twiiter too insted of just local
@@ -38,6 +39,8 @@ route.post('/login/seller', passport.authenticate('sellerLocal', { failureFlash:
     delete req.session.returnTo;
     res.redirect(redirectUrl);
 });
+
+
 
 // route.use('/login/seller', function adminContext(req, res, next) {
 //     // set admin context
