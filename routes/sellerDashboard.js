@@ -30,7 +30,8 @@ route.post('/seller/company', isLoggedIn, isSeller, catchAsync(async (req, res) 
 }))
 
 route.get('/seller/products', isLoggedIn, isSeller, catchAsync(async (req, res) => {
-    res.render('users/seller/products')
+    const products=await Product.find({ author: (`${req.user._id}`) });
+    res.render('users/seller/products', { products });
 }))
 
 

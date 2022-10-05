@@ -1,3 +1,5 @@
+<script src="https://kit.fontawesome.com/cad4c8ddee.js" crossorigin="anonymous"></script>
+
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #5e35b1;">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">SnapBuy</a>
@@ -9,7 +11,9 @@
             <div class="navbar-nav">
                 <a class="nav-link" href="/">Home</a>
                 <a class="nav-link" href="/products">Products</a>
-                <a class="nav-link" href="/products/new">New Product</a>
+                <% if(currentUser && currentUser.isSeller) {%>
+                    <a class="nav-link" href="/products/new">New Product</a>
+                    <% } %>
             </div>
             <div class="navbar-nav ms-auto">
                 <% if(!currentUser) {%>
@@ -25,6 +29,7 @@
                     </div>
                     <a href="/register" class="nav-link" style="color:white">Register</a>
                     <% } else {%>
+                        <a class="icon" href="/seller/dashboard"><i class="fa-solid fa-user fa-2xl"></i></a>
                         <a href="/logout" class="nav-link">Logout</a>
                         <% } %>
 
@@ -32,3 +37,14 @@
         </div>
     </div>
 </nav>
+<style>
+    .icon {
+        color: white;
+        margin-top: 0.5rem;
+        margin-right: 1rem;
+    }
+
+    .icon:hover {
+        color: black;
+    }
+</style>

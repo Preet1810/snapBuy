@@ -1,6 +1,6 @@
 <% layout('layouts/boilerplate')%>
 
-    <link rel="stylesheet" href="/styleSheets/sellerprofile.css">
+    <link rel="stylesheet" href="/styleSheets/sellerdashboard/products.css">
     <ul class="nav nav-pills nav-fill mt-5">
         <li class="nav-item">
             <a class="nav-link" aria-current="page" href="/seller/dashboard">Dashboard</a>
@@ -15,3 +15,28 @@
             <a class="nav-link">Leads</a>
         </li>
     </ul>
+
+    <h2>Products And Services</h2>
+
+    <div class="row row-cols-1 row-cols-md-5 g-4">
+        <% for(let product of products) {%>
+            <div class="col">
+                <div class="card d-flex justify-content-md-center">
+                    <img src="<%= product.image %> " class="card-img-top" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="/products/<%= product._id %> ">
+                                <%= product.title %>
+                            </a>
+                        </h5>
+                        <a class="card-link btn btn-info" href="/products/<%= product._id %>/edit ">Edit</a>
+                        <form class="d-inline" action="/products/<%=product._id%>?_method=DELETE" method="POST"
+                            method="POST">
+                            <button class="btn  btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <% } %>
+    </div>

@@ -1,0 +1,53 @@
+h2 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+
+.card-img-top {
+    width: 240px;
+    height: 150px;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.card-title {
+    font-size: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.btn {
+    padding: .25rem .4rem;
+    font-size: 1rem;
+    line-height: 1;
+    border-radius: .3rem;
+}
+
+/* .card {
+    height: 20rem;
+    width: 20rem;
+} */
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    color: #F0F8FF;
+    background-color: #5e35b1;
+}
+
+.nav {
+    background-color: black;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: aliceblue;
+}
+
+.nav-item>a:hover {
+    background-color: #5e35b1;
+    color: #F0F8FF;
+}
