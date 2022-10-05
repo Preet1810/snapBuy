@@ -12,7 +12,7 @@ const categories=require('./routes/categories');
 const reviews=require('./routes/reviews');
 const userRoutes=require('./routes/users');
 const sellerRoutes=require('./routes/seller');
-const dashboardRoutes=require('./routes/main')
+const dashboardRoutes=require('./routes/sellerDashboard')
 
 const passport=require('passport');
 const LocalStrategy=require('passport-local');

@@ -1,15 +1,15 @@
 <% layout('layouts/boilerplate')%>
 
-    <link rel="stylesheet" href="styleSheets/sellerprofile.css">
+    <link rel="stylesheet" href="/styleSheets/sellerprofile.css">
     <ul class="nav nav-pills nav-fill mt-5">
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/dashboard">Dashboard</a>
+            <a class="nav-link active" aria-current="page" href="/seller/dashboard">Dashboard</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/company">Company Profile</a>
+            <a class="nav-link" href="/seller/company">Company Profile</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Products</a>
+            <a class="nav-link" href="/seller/products">Products</a>
         </li>
         <li class="nav-item">
             <a class="nav-link">Leads</a>
@@ -17,7 +17,7 @@
     </ul>
 
     <div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
-        <a href="/company">
+        <a href="/seller/company">
             <div class="col">
                 <div class="card">
                     <img src="/icons/user.png" class="card-img-top" alt="...">
@@ -28,17 +28,19 @@
                 </div>
             </div>
         </a>
-        <div class="col">
-            <div class="card">
-                <img src="/icons/box.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h3 class="card-title">Products</h3>
-                    <p class="card-text">
-                        <%= totalProducts.length %> Total Products
-                    </p>
+        <a href="/seller/products">
+            <div class="col">
+                <div class="card">
+                    <img src="/icons/box.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h3 class="card-title">Products</h3>
+                        <p class="card-text">
+                            <%= totalProducts.length %> Total Products
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
+        </a>
         <div class="col">
             <div class="card">
                 <img src="/icons/magnetism.png" class="card-img-top" alt="...">
