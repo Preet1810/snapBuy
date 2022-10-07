@@ -1,5 +1,6 @@
 <% layout('layouts/boilerplate')%>
     <link rel="stylesheet" href="/styleSheets/indexImages.css">
+    <script src="/javascripts/index.js"></script>
     <div class="mt-4">
         <h1 class="">Featured Products</h1>
         <% if( currentUser && currentUser.isSeller) {%>
@@ -12,7 +13,7 @@
                                 <img src="<%= product.image %> " class="card-img-top" alt="">
                                 <div class="card-body">
                                     <h5 class="card-title">
-                                        <a href="/products/<%= product._id %> ">
+                                        <a href="/products/<%= product._id %> " id="productname">
                                             <%= product.title %>
                                         </a>
                                     </h5>
@@ -25,8 +26,8 @@
                                             <%= product.categories %>
                                         </a></b>
 
-                                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal">
+                                    <button type="button" class="btn btn-primary btn-sm modalbtn" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal" data-id="ISBN-001122">
                                         Enquiry
                                     </button>
 
@@ -48,34 +49,53 @@
 
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Post Your Requirement</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <label for="service">Product/Service</label>
-                    <input type="text" id="service">
-                    <div>
-                        <label for="quantity">Quantity</label>
-                        <input type="text" id="quantity">
-                        <label for="unit">Unit</label>
-                        <select name="" id="unit">
-                            <option value="">Piece</option>
-                            <option value="">Litre</option>
-                            <option value="">KG</option>
-                            <option value="">Units</option>
-                            <option value="">Meter</option>
-                            <option value="">Sq ft </option>
-                            <option value="">Inch</option>
-                        </select>
-                    </div>
+                    <form action="" class="row g-3">
+                        <div class="col-md-12">
+                            <label for="service" class="form-label">Product/Service</label>
+                            <input type="text" class="form-control" id="service" name="productname">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="quantity" class="form-label">Quantity</label>
+                            <input type="text" id="quantity" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="unit" class="form-label">Unit</label>
+                            <select name="" id="unit" class="form-control">
+                                <option value="">Piece</option>
+                                <option value="">Litre</option>
+                                <option value="">KG</option>
+                                <option value="">Units</option>
+                                <option value="">Meter</option>
+                                <option value="">Sq ft </option>
+                                <option value="">Inch</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="buyingrequirement" class="form-label">Describe Your Buying Requirement</label>
+                            <textarea name="" id="buyingrequirement" cols="20" rows="3" class="form-control"></textarea>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="number" class="form-label">Contact No.</label>
+                            <input type="text" id="number" class="form-control">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Send Enquiry</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+
             </div>
         </div>
     </div>
