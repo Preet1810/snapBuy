@@ -24,10 +24,18 @@
                                             href="/products/categories/<%= product.categories %>">
                                             <%= product.categories %>
                                         </a></b>
+
+                                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">
+                                        Enquiry
+                                    </button>
+
                                     <p class="card-text">
-                                        <b>
-                                            <%= product.sellerName %> Group
-                                        </b>
+                                        <a href="/seller/<%= product.author.companyname %>">
+                                            <b>
+                                                <%= product.author.companyname %>
+                                            </b>
+                                        </a>
                                     </p>
 
                                 </div>
@@ -36,4 +44,38 @@
 
                         <% } %>
                 </div>
+    </div>
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Post Your Requirement</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="service">Product/Service</label>
+                    <input type="text" id="service">
+                    <div>
+                        <label for="quantity">Quantity</label>
+                        <input type="text" id="quantity">
+                        <label for="unit">Unit</label>
+                        <select name="" id="unit">
+                            <option value="">Piece</option>
+                            <option value="">Litre</option>
+                            <option value="">KG</option>
+                            <option value="">Units</option>
+                            <option value="">Meter</option>
+                            <option value="">Sq ft </option>
+                            <option value="">Inch</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
     </div>

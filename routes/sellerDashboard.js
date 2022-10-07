@@ -21,17 +21,26 @@ route.post('/seller/company', isLoggedIn, isSeller, catchAsync(async (req, res) 
     try {
         const seller=await Seller.findByIdAndUpdate(`${req.user._id}`, req.body);
         req.flash('success', 'Successfully Edited the Product');
-        res.redirect('/dashboard');
+        res.redirect(`/seller/${seller.companyname}`);
     }
     catch (e) {
         req.flash('error', e.message)
-        res.redirect('/company')
+        res.redirect('/seller/company')
     }
 }))
 
 route.get('/seller/products', isLoggedIn, isSeller, catchAsync(async (req, res) => {
     const products=await Product.find({ author: (`${req.user._id}`) });
     res.render('users/seller/products', { products });
+}))
+
+route.get('/seller/:id', catchAsync(async (req, res) => {
+    const { id }=req.params;
+    const seller=await Seller.find({ companyname: (id) })
+    // console.log(seller)
+    const products=await Product.find({ author: (seller[0]._id) })
+    // console.log(products)
+    res.render('users/seller/sellerPage', { seller, products })
 }))
 
 

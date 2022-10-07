@@ -1,0 +1,68 @@
+<% layout('layouts/boilerplate')%>
+    <link rel="stylesheet" href="/styleSheets/sellerpage.css">
+    <h1>Company Profile</h1>
+
+    <div class="card mb-3 seller" style="max-width: 2000px;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="<%= seller[0].image %> " class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h2 class="card-title">
+                        <%= seller[0].companyname %>
+                    </h2>
+                    <p class="card-text"><b>Contact Number: </b>
+                        <%= seller[0].contactnumber %>
+                    </p>
+                    <p class="card-text"><b>Email Address: </b>
+                        <%= seller[0].email %>
+                    </p>
+                    <p class="card-text"><b>Company Address: </b>
+                        <%= seller[0].address %>
+                    </p>
+                    <p class="card-text"><b>Nature of Business: </b>
+                        <%= seller[0].nature %>
+                    </p>
+                    <h4>About Us</h4>
+                    <p>
+                        <%= seller[0].aboutcompany %>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h2>Products And Services</h2>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <% for(let product of products) {%>
+            <div class="col">
+                <div class="card h-100 d-flex justify-content-md-center align-items-center">
+                    <img src="<%= product.image %> " class="card-img-top" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="/products/<%= product._id %> ">
+                                <%= product.title %>
+                            </a>
+                        </h5>
+                        <p class="card-text">
+                            <%= product.description %>
+                        </p>
+
+                        <b class="card-text">Category: <a href="/products/categories/<%= product.categories %>">
+                                <%= product.categories %>
+                            </a></b>
+                        <p class="card-text">
+                            <a href="/seller/<%= product.author.companyname %>">
+                                <b>
+                                    <%= product.author.companyname %>
+                                </b>
+                            </a>
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+
+            <% } %>
+    </div>
