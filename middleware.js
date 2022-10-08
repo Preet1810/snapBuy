@@ -63,6 +63,13 @@ module.exports.isSeller=async (req, res, next) => {
     }
     next();
 }
+module.exports.isUser=async (req, res, next) => {
+    if (req.user.isSeller) {
+        req.flash('error', 'You do not have permission to do that!')
+        return res.redirect('/products')
+    }
+    next();
+}
 
 
 // module.exports.find=async (req, res, next) => {

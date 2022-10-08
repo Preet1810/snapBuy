@@ -10,6 +10,7 @@ const { validateReview, isLoggedIn, isReviewAuthor }=require('../middleware')
 route.post('/', isLoggedIn, validateReview, catchAsync(async (req, res) => {
     const product=await Product.findById(req.params.id)
     const review=new Review(req.body.review);
+    console.log(review);
     review.author=req.user._id;
     product.reviews.push(review);
     await product.save();

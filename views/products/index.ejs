@@ -9,7 +9,7 @@
                 <div class="row row-cols-1 row-cols-md-3 g-4">
                     <% for(let product of products) {%>
                         <div class="col">
-                            <div class="card h-100 d-flex justify-content-md-center align-items-center">
+                            <div class="card h-100">
                                 <img src="<%= product.image %> " class="card-img-top" alt="">
                                 <div class="card-body">
                                     <h5 class="card-title">
@@ -27,15 +27,17 @@
                                         </a></b>
 
                                     <button type="button" class="btn btn-primary btn-sm modalbtn" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal" data-id="ISBN-001122">
+                                        data-bs-target="#exampleModal">
                                         Enquiry
                                     </button>
 
                                     <p class="card-text">
                                         <a href="/seller/<%= product.author.companyname %>">
-                                            <b>
-                                                <%= product.author.companyname %>
-                                            </b>
+                                            <div>
+                                                <b id="sellername">
+                                                    <%= product.author.companyname %>
+                                                </b>
+                                            </div>
                                         </a>
                                     </p>
 
@@ -47,8 +49,7 @@
                 </div>
     </div>
 
-
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -56,46 +57,56 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="" class="row g-3">
-                        <div class="col-md-12">
-                            <label for="service" class="form-label">Product/Service</label>
-                            <input type="text" class="form-control" id="service" name="productname">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="quantity" class="form-label">Quantity</label>
-                            <input type="text" id="quantity" class="form-control">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="unit" class="form-label">Unit</label>
-                            <select name="" id="unit" class="form-control">
-                                <option value="">Piece</option>
-                                <option value="">Litre</option>
-                                <option value="">KG</option>
-                                <option value="">Units</option>
-                                <option value="">Meter</option>
-                                <option value="">Sq ft </option>
-                                <option value="">Inch</option>
-                            </select>
-                        </div>
-                        <div class="col-md-12">
-                            <label for="buyingrequirement" class="form-label">Describe Your Buying Requirement</label>
-                            <textarea name="" id="buyingrequirement" cols="20" rows="3" class="form-control"></textarea>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" id="email" class="form-control">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="number" class="form-label">Contact No.</label>
-                            <input type="text" id="number" class="form-control">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Send Enquiry</button>
-                        </div>
-                    </form>
-                </div>
+                    <div class="panel">
+                        <form action="/enquiry" method="POST" novalidate class="needs-validation row g-3"
+                            id="search_form">
 
+                            <div class="col-md-6">
+                                <label for="service" class="form-label">Product/Service</label>
+                                <input type="text" class="form-control" id="pname" name="productname" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="seller" class="form-label">Seller</label>
+                                <input type="text" class="form-control" id="sname" name="seller" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="quantity" class="form-label">Quantity</label>
+                                <input type="text" id="quantity" class="form-control" name="quantity" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="unit" class="form-label">Unit</label>
+                                <select id="unit" class="form-control" name="unit" required>
+                                    <option value="Piece">Piece</option>
+                                    <option value="Litre">Litre</option>
+                                    <option value="KG">KG</option>
+                                    <option value="Units">Units</option>
+                                    <option value="Meter">Meter</option>
+                                    <option value="Sq ft">Sq ft </option>
+                                    <option value="Inch">Inch</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="buyingrequirement" class="form-label">Describe Your Buying
+                                    Requirement</label>
+                                <textarea name="" id="buyingrequirement" cols="20" rows="3" class="form-control"
+                                    name="body" required></textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" id="email" class="form-control" name="email" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="number" class="form-label">Contact No.</label>
+                                <input type="text" id="number" class="form-control" name="number" required>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" onclick="form_submit()" class="btn btn-primary">Send
+                                    Enquiry</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -13,6 +13,7 @@ const reviews=require('./routes/reviews');
 const userRoutes=require('./routes/users');
 const sellerRoutes=require('./routes/seller');
 const dashboardRoutes=require('./routes/sellerDashboard')
+const enquiryRoutes=require('./routes/enquiry')
 
 const passport=require('passport');
 const LocalStrategy=require('passport-local');
@@ -102,7 +103,7 @@ app.use((req, res, next) => {                             //these are globals, i
     res.locals.error=req.flash('error');
     next();
 })
-
+app.use('/enquiry', enquiryRoutes);
 app.use('/', dashboardRoutes);
 app.use('/', sellerRoutes);
 app.use('/', userRoutes);

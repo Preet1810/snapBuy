@@ -28,6 +28,12 @@ const SellerSchema=new Schema({
         type: Boolean,
         default: false
     },
+    enquiries: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Enquiry',
+        }
+    ],
     image: String,
     aboutcompany: String,
     nature: String
