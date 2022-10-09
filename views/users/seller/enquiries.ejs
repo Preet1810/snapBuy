@@ -21,29 +21,37 @@
             <%accordNumber++%>
                 <div class="accordion" id="accordionPanelsStayOpenExample">
                     <div class="accordion-item">
-                        <h2 class="accordion-header" id="panelsStayOpen-<%=accordNumber%> ">
+                        <h2 class="accordion-header" id="panelsStayOpen-headingOne ">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                                data-bs-target="#panelsStayOpen-<%=accordNumber%>" aria-expanded="true"
                                 aria-controls="panelsStayOpen-collapseOne">
                                 <%= enquiry.productname %>
                                     <%= enquiry.quantity %>
                                         <%= enquiry.unit %>
                             </button>
                         </h2>
-                        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse"
-                            aria-labelledby="panelsStayOpen-<%=accordNumber%>">
+                        <div id="panelsStayOpen-<%=accordNumber%>" class="accordion-collapse collapse"
+                            aria-labelledby="panelsStayOpen-headingOne">
                             <div class="accordion-body">
-                                <strong>This is the first item's accordion body.</strong> It is shown by default, until
-                                the
-                                collapse plugin adds the appropriate classes that we use to style each element. These
-                                classes
-                                control the overall appearance, as well as the showing and hiding via CSS transitions.
-                                You can
-                                modify any of this with custom CSS or overriding our default variables. It's also worth
-                                noting
-                                that just about any HTML can go within the <code>.accordion-body</code>, though the
-                                transition
-                                does limit overflow.
+                                <form class="card card-body">
+                                    <div class="row">
+                                        <div class="col px-1 mb-2">
+                                            <label for="input1" class="ms-2 position-absolute"
+                                                style="margin-top: -0.25rem !important">
+                                                <span class="h6 small bg-white text-muted px-1">Product/Service</span>
+                                            </label>
+                                            <input type="text" class="form-control mt-2" id="input1"
+                                                value="<%= enquiry.productname %>" readonly>
+                                        </div>
+                                        <div class="col px-1 mb-2">
+                                            <label for="input2" class="ms-2 position-absolute"
+                                                style="margin-top: -0.25rem !important">
+                                                <span class="h6 small bg-white text-muted px-1">Password</span>
+                                            </label>
+                                            <input type="password" class="form-control mt-2" id="input2">
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
