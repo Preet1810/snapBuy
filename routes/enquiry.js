@@ -5,11 +5,10 @@ const ExpressError=require('../utils/ExpressErrors');
 const Enquiry=require('../model/enquiry');
 const Seller=require('../model/seller');
 
-const { isLoggedIn, isUser }=require('../middleware');
+const { isLoggedIn, isUser, validateEnquiry }=require('../middleware');
 
-route.post('/', isLoggedIn, isUser, catchAsync(async (req, res) => {
-    const enquiry=new Enquiry(req.body);
-    console.log(enquiry)
+route.post('/', isLoggedIn, isUser, validateEnquiry, catchAsync(async (req, res) => {
+    const enquiry=new Enquiry(req.body.enquiry);
     enquiry.author=req.user._id;
     const seller=await Seller.find({ companyname: (enquiry.seller) });
     console.log(seller)
@@ -18,8 +17,8 @@ route.post('/', isLoggedIn, isUser, catchAsync(async (req, res) => {
     await enquiry.save();
     req.flash('success', 'Successfully Sent Enquiry to Seller');
     res.redirect(`/products`);
-    // console.log(enquiry)
-    // console.log(seller)
+    console.log(enquiry)
+    console.log(seller)
 }))
 
 module.exports=route;

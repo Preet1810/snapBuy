@@ -16,8 +16,8 @@ route.get('/register/buyer', (req, res) => {
 route.post('/register/buyer', catchAsync(async (req, res, next) => {
     // res.send(req.body);
     try {
-        const { email, username, password }=req.body;
-        const user=new User({ email, username });
+        const { email, username, contactNumber, password }=req.body;
+        const user=new User({ email, username, contactNumber });
         const registeredUser=await User.register(user, password);       //registering user
         req.login(registeredUser, err => {                              //after registering it logins the registered user
             if (err) return next(err);

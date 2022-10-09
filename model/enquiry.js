@@ -5,7 +5,7 @@ const enquirySchema=new Schema({
     productname: String,
     quantity: Number,
     unit: String,
-    body: String,
+    buyingBody: String,
     email: String,
     contact: Number,
     seller: String,

@@ -34,6 +34,18 @@ route.get('/seller/products', isLoggedIn, isSeller, catchAsync(async (req, res) 
     res.render('users/seller/products', { products });
 }))
 
+route.get('/seller/enquiry', isLoggedIn, isSeller, catchAsync(async (req, res) => {
+    const seller=await Seller.findById(`${req.user._id}`).populate({
+        path: 'enquiries',
+        populate: {
+            path: 'author'
+        }
+    });
+    console.log(seller.enquiries)
+
+    res.render('users/seller/enquiries', { seller })
+}))
+
 route.get('/seller/:id', catchAsync(async (req, res) => {
     const { id }=req.params;
     const seller=await Seller.find({ companyname: (id) })

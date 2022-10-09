@@ -1,7 +1,7 @@
 const Product=require('./model/products');
 const Review=require('./model/reviews');
 const ExpressError=require('./utils/ExpressErrors');
-const { productSchema, reviewSchema }=require('./schemas.js');
+const { productSchema, reviewSchema, enquirySchema }=require('./schemas.js');
 
 
 
@@ -17,6 +17,16 @@ module.exports.validateReview=(req, res, next) => {
 
 module.exports.validateProduct=(req, res, next) => {
     const { error }=productSchema.validate(req.body);
+    if (error) {
+        const msg=error.details.map(el => el.message).join(',')
+        throw new ExpressError(msg, 400)
+    } else {
+        next();
+    }
+}
+
+module.exports.validateEnquiry=(req, res, next) => {
+    const { error }=enquirySchema.validate(req.body);
     if (error) {
         const msg=error.details.map(el => el.message).join(',')
         throw new ExpressError(msg, 400)

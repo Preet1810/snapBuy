@@ -16,3 +16,15 @@ module.exports.reviewSchema=Joi.object({
         rating: Joi.number().required().min(1).max(5)
     }).required()
 })
+
+module.exports.enquirySchema=Joi.object({
+    enquiry: Joi.object({
+        productname: Joi.string().required(),
+        quantity: Joi.number().required().min(1),
+        unit: Joi.string().required(),
+        buyingBody: Joi.string(),
+        email: Joi.string().required(),
+        contact: Joi.number().required(),
+        seller: Joi.string().required()
+    }).required()
+})

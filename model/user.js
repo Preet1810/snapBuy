@@ -8,6 +8,9 @@ const UserSchema=new Schema({
         required: true,
         unique: true
     },
+    contactNumber: {
+        type: Number,
+    },
     isSeller: {
         type: Boolean,
         default: false
