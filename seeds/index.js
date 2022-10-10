@@ -24,10 +24,10 @@ const seedDB=async () => {
         const random1000=Math.floor(Math.random()*199);
         const price=Math.floor(Math.random()*30)
         const prudu=new Product({
-            author: '63355666d4c25e7696191ba2',
+            author: '6343caad9fed2d06049443e8',
             location: `${cities[random1000].name}, ${cities[random1000].state}`,
             title: `${sample(descriptors)} ${sample(places)}`,
-            image: 'https://www.junglescout.com/wp-content/uploads/2021/01/product-photo-water-bottle-hero.png',
+            image: 'https://images.unsplash.com/photo-1640955014216-75201056c829?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80',
             description: 'Voluptate placeat corporis et voluptatem qui id eveniet perspiciatis exercitationem, natus quibusdam dolorem dignissimos eaque provident. Quis a totam earum architecto dignissimos. Cupiditate ipsa officia maxime quaerat saepe autem modi!Maiores aut aperiam eos !',
             price,
             sellerName: `${sample(descriptors)}`,

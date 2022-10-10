@@ -4,10 +4,13 @@ const catchAsync=require('../utils/catchAsync')
 const ExpressError=require('../utils/ExpressErrors');
 const Product=require('../model/products');
 const Seller=require('../model/seller');
+const Enquiry=require('../model/enquiry')
 const { isLoggedIn, isSeller }=require('../middleware')
 
 route.get('/seller/dashboard', isLoggedIn, isSeller, catchAsync(async (req, res) => {
     const totalProducts=await Product.find({ author: (`${req.user._id}`) })
+    // const totalEnquiries = await Enquiry.find({})
+
     res.render('users/seller/dashboard', { totalProducts })
 }))
 
@@ -42,9 +45,16 @@ route.get('/seller/enquiry', isLoggedIn, isSeller, catchAsync(async (req, res) =
         }
     });
 
-    console.log(seller.enquiries)
+    // console.log(seller.enquiries)
 
     res.render('users/seller/enquiries', { seller })
+}))
+
+route.delete('/seller/enquiry/:enquiryid', isLoggedIn, isSeller, catchAsync(async (req, res) => {
+    const { enquiryid }=req.params;
+    await Enquiry.findByIdAndDelete(enquiryid)
+    req.flash('success', 'Successfully Deleted a Enquiry');
+    res.redirect(`/seller/enquiry`);
 }))
 
 route.get('/seller/:id', catchAsync(async (req, res) => {

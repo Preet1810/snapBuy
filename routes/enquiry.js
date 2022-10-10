@@ -5,7 +5,7 @@ const ExpressError=require('../utils/ExpressErrors');
 const Enquiry=require('../model/enquiry');
 const Seller=require('../model/seller');
 
-const { isLoggedIn, isUser, validateEnquiry }=require('../middleware');
+const { isLoggedIn, isUser, isSeller, validateEnquiry }=require('../middleware');
 
 route.post('/', isLoggedIn, isUser, validateEnquiry, catchAsync(async (req, res) => {
     const enquiry=new Enquiry(req.body.enquiry);
@@ -20,5 +20,12 @@ route.post('/', isLoggedIn, isUser, validateEnquiry, catchAsync(async (req, res)
     console.log(enquiry)
     console.log(seller)
 }))
+
+// route.delete('/:enquiryid', isLoggedIn, isSeller, catchAsync(async (req, res) => {
+//     const { enquiryid }=req.params;
+//     await Enquiry.findByIdAndDelete(enquiryid)
+//     req.flash('success', 'Successfully Deleted a Enquiry');
+//     res.redirect(`/seller/enquiry`);
+// }))
 
 module.exports=route;

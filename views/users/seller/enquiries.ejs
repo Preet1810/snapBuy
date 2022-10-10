@@ -33,9 +33,16 @@
                         <div id="panelsStayOpen-<%=accordNumber%>" class="accordion-collapse collapse"
                             aria-labelledby="panelsStayOpen-headingOne">
                             <div class="accordion-body">
-                                <form class="card card-body">
+                                <form class="card card-body" action="/seller/enquiry/<%= enquiry._id %>?_method=DELETE"
+                                    method="POST">
                                     <div class="row g-3">
-                                        <h3>Enquiry Information</h3>
+                                        <div class="">
+                                            <h3 class="heading-enquiry">Enquiry Information</h3>
+
+                                            <button class="btn btn-danger delete-enquiry">Delete</button>
+
+                                        </div>
+
                                         <div class="col-md-4 px-1 mb-2">
                                             <label for="input1" class="ms-2 position-absolute"
                                                 style="margin-top: -0.25rem !important">
@@ -69,13 +76,29 @@
                                                 rows="3" readonly><%= enquiry.buyingBody%></textarea>
                                         </div>
                                         <h3>Enquirer Information</h3>
-                                        <div class="col-md-12 px-1 mb-2">
+                                        <div class="col-md-4 px-1 mb-2">
                                             <label for="input5" class="ms-2 position-absolute"
                                                 style="margin-top: -0.25rem !important">
                                                 <span class="h6 small bg-white text-muted px-1">Name</span>
                                             </label>
                                             <input type="text" class="form-control mt-2" id="input5"
                                                 value="<%= enquiry.author.username %> " readonly>
+                                        </div>
+                                        <div class="col-md-4 px-1 mb-2">
+                                            <label for="input6" class="ms-2 position-absolute"
+                                                style="margin-top: -0.25rem !important">
+                                                <span class="h6 small bg-white text-muted px-1">Email</span>
+                                            </label>
+                                            <input type="text" class="form-control mt-2" id="input6"
+                                                value="<%= enquiry.author.email %> " readonly>
+                                        </div>
+                                        <div class="col-md-4 px-1 mb-2">
+                                            <label for="input7" class="ms-2 position-absolute"
+                                                style="margin-top: -0.25rem !important">
+                                                <span class="h6 small bg-white text-muted px-1">Contact Number</span>
+                                            </label>
+                                            <input type="text" class="form-control mt-2" id="input7"
+                                                value="<%= enquiry.author.contactNumber %> " readonly>
                                         </div>
                                     </div>
                                 </form>
