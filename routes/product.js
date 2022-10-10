@@ -31,6 +31,7 @@ route.get('/:id', catchAsync(async (req, res) => {
             path: 'author'
         }
     }).populate('author');              //show page  populating reviews so that those object id will also have the body of review
+    console.log(product.reviews)
     if (!product) {
         req.flash('error', 'Cannot find that Product!');
         return res.redirect('/products')

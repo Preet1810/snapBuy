@@ -41,6 +41,7 @@ route.get('/seller/enquiry', isLoggedIn, isSeller, catchAsync(async (req, res) =
             path: 'author'
         }
     });
+
     console.log(seller.enquiries)
 
     res.render('users/seller/enquiries', { seller })

@@ -34,8 +34,9 @@
                             aria-labelledby="panelsStayOpen-headingOne">
                             <div class="accordion-body">
                                 <form class="card card-body">
-                                    <div class="row">
-                                        <div class="col px-1 mb-2">
+                                    <div class="row g-3">
+                                        <h3>Enquiry Information</h3>
+                                        <div class="col-md-4 px-1 mb-2">
                                             <label for="input1" class="ms-2 position-absolute"
                                                 style="margin-top: -0.25rem !important">
                                                 <span class="h6 small bg-white text-muted px-1">Product/Service</span>
@@ -43,12 +44,38 @@
                                             <input type="text" class="form-control mt-2" id="input1"
                                                 value="<%= enquiry.productname %>" readonly>
                                         </div>
-                                        <div class="col px-1 mb-2">
+                                        <div class="col-md-4 px-1 mb-2">
                                             <label for="input2" class="ms-2 position-absolute"
                                                 style="margin-top: -0.25rem !important">
-                                                <span class="h6 small bg-white text-muted px-1">Password</span>
+                                                <span class="h6 small bg-white text-muted px-1">Quantity</span>
                                             </label>
-                                            <input type="password" class="form-control mt-2" id="input2">
+                                            <input type="text" class="form-control mt-2" id="input2"
+                                                value="<%= enquiry.quantity%>" readonly>
+                                        </div>
+                                        <div class="col-md-4 px-1 mb-2">
+                                            <label for="input3" class="ms-2 position-absolute"
+                                                style="margin-top: -0.25rem !important">
+                                                <span class="h6 small bg-white text-muted px-1">Unit</span>
+                                            </label>
+                                            <input type="text" class="form-control mt-2" id="input3"
+                                                value="<%= enquiry.unit%>" readonly>
+                                        </div>
+                                        <div class="col-md-12 px-1 mb-2">
+                                            <label for="input4" class="ms-2 position-absolute"
+                                                style="margin-top: -0.25rem !important">
+                                                <span class="h6 small bg-white text-muted px-1">Enquirer Message</span>
+                                            </label>
+                                            <textarea class="form-control mt-2" name="body" id="input4" cols="30"
+                                                rows="3" readonly><%= enquiry.buyingBody%></textarea>
+                                        </div>
+                                        <h3>Enquirer Information</h3>
+                                        <div class="col-md-12 px-1 mb-2">
+                                            <label for="input5" class="ms-2 position-absolute"
+                                                style="margin-top: -0.25rem !important">
+                                                <span class="h6 small bg-white text-muted px-1">Name</span>
+                                            </label>
+                                            <input type="text" class="form-control mt-2" id="input5"
+                                                value="<%= enquiry.author.username %> " readonly>
                                         </div>
                                     </div>
                                 </form>
