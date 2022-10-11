@@ -1,6 +1,7 @@
 <script src="https://kit.fontawesome.com/cad4c8ddee.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/styleSheets/navbar.css">
 
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #5e35b1;">
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">SnapBuy</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
@@ -15,6 +16,16 @@
                     <a class="nav-link" href="/products/new">New Product</a>
                     <% } %>
             </div>
+            <form action="/products" method="GET" class="form-inline">
+                <div class="form-group search-pro">
+                    <input type="text" name="search" placeholder=" Search..." class="form-control search-form">
+                    <input type="submit" value="Search" class="btn btn-default search-btn">
+                </div>
+            </form>
+            <!-- <form action="/products" method="GET" class="d-flex search-form" role="search">
+                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                <button class="search-btn btn btn-outline-success" type="submit">Search</button>
+            </form> -->
             <div class="navbar-nav ms-auto">
                 <% if(!currentUser) {%>
                     <div class="dropdown">
@@ -37,14 +48,3 @@
         </div>
     </div>
 </nav>
-<style>
-    .icon {
-        color: white;
-        margin-top: 0.5rem;
-        margin-right: 1rem;
-    }
-
-    .icon:hover {
-        color: black;
-    }
-</style>

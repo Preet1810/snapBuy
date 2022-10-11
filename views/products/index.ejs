@@ -2,53 +2,59 @@
     <link rel="stylesheet" href="/styleSheets/indexImages.css">
     <script src="/javascripts/index.js"></script>
     <div class="mt-4">
-        <h1 class="">Featured Products</h1>
-        <% if( currentUser && currentUser.isSeller) {%>
-            <h2><a href="/products/new">Create a product</a></h2>
-            <% } %>
-                <div class="row row-cols-1 row-cols-md-3 g-4">
-                    <% for(let product of products) {%>
-                        <div class="col">
-                            <div class="card h-100">
-                                <img src="<%= product.image %> " class="card-img-top" alt="">
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        <a href="/products/<%= product._id %> " id="productname">
-                                            <%= product.title %>
-                                        </a>
-                                    </h5>
-                                    <p class="card-text">
-                                        <%= product.description %>
-                                    </p>
-
-                                    <b class="card-text">Category: <a
-                                            href="/products/categories/<%= product.categories %>">
-                                            <%= product.categories %>
-                                        </a></b>
-                                    <% if(!currentUser) {%>
-                                        <a href="/login/buyer" class="btn btn-primary btn-sm">Enquiry</a>
-                                        <% }else if(currentUser && !currentUser.isSeller) { %>
-                                            <button type=" button" class="btn btn-primary btn-sm modalbtn"
-                                                data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                Enquiry
-                                            </button>
-                                            <% } %>
-
-                                                <p class="card-text">
-                                                    <a href="/seller/<%= product.author.companyname %>">
-                                                        <div>
-                                                            <b id="sellername">
-                                                                <%= product.author.companyname %>
-                                                            </b>
-                                                        </div>
-                                                    </a>
-                                                </p>
-                                </div>
-                            </div>
-                        </div>
-
+        <% if(noMatch !==null) { %>
+            <h3 class="nomatch">
+                <%= noMatch %>
+            </h3>
+            <% } else{%>
+                <h1 class="">Featured Products</h1>
+                <% } %>
+                    <% if( currentUser && currentUser.isSeller) {%>
+                        <h2><a href="/products/new">Create a product</a></h2>
                         <% } %>
-                </div>
+                            <div class="row row-cols-1 row-cols-md-3 g-4">
+                                <% for(let product of products) {%>
+                                    <div class="col">
+                                        <div class="card h-100">
+                                            <img src="<%= product.image %> " class="card-img-top" alt="">
+                                            <div class="card-body">
+                                                <h5 class="card-title">
+                                                    <a href="/products/<%= product._id %> " id="productname">
+                                                        <%= product.title %>
+                                                    </a>
+                                                </h5>
+                                                <p class="card-text">
+                                                    <%= product.description %>
+                                                </p>
+
+                                                <b class="card-text">Category: <a
+                                                        href="/products/categories/<%= product.categories %>">
+                                                        <%= product.categories %>
+                                                    </a></b>
+                                                <% if(!currentUser) {%>
+                                                    <a href="/login/buyer" class="btn btn-primary btn-sm">Enquiry</a>
+                                                    <% }else if(currentUser && !currentUser.isSeller) { %>
+                                                        <button type=" button" class="btn btn-primary btn-sm modalbtn"
+                                                            data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                            Enquiry
+                                                        </button>
+                                                        <% } %>
+
+                                                            <p class="card-text">
+                                                                <a href="/seller/<%= product.author.companyname %>">
+                                                                    <div>
+                                                                        <b id="sellername">
+                                                                            <%= product.author.companyname %>
+                                                                        </b>
+                                                                    </div>
+                                                                </a>
+                                                            </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <% } %>
+                            </div>
     </div>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">

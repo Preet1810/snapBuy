@@ -7,9 +7,18 @@ const { isLoggedIn, isAuthor, validateProduct, isSeller }=require('../middleware
 const Seller=require('../model/seller');
 
 route.get('/', catchAsync(async (req, res) => {
-    const products=await Product.find({}).populate('author');                        //all products
-    const seller=await Seller.find({})
-    res.render('products/index', { products });
+    let noMatch=null;
+    if (req.query.search) {
+        const regex=new RegExp(escapeRegex(req.query.search), 'gi');
+        const products=await Product.find({ title: regex });
+        if (products.length<1) {
+            noMatch="No Products match that query, please try again.";
+        }
+        res.render('products/index', { products, noMatch });
+    } else {
+        const products=await Product.find({}).populate('author');                        //all products
+        res.render('products/index', { products, noMatch });
+    }
 }))
 route.get('/new', isLoggedIn, isSeller, (req, res) => {                          //new product page
     res.render('products/new');
@@ -61,6 +70,10 @@ route.delete('/:id', isLoggedIn, isSeller, isAuthor, catchAsync(async (req, res)
     req.flash('success', 'Successfully Deleted');
     res.redirect('/seller/products');
 }))
+
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
 
 
 module.exports=route;

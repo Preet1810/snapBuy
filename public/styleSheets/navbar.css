@@ -1,0 +1,37 @@
+.icon {
+    color: white;
+    margin-top: 0.5rem;
+    margin-right: 1rem;
+}
+
+.icon:hover {
+    color: black;
+}
+
+.navbar {
+    background-color: #5e35b1;
+}
+
+.search-form {
+    display: inline-block;
+    width: 50rem;
+    margin-left: 8rem;
+}
+
+/* .search-pro {
+    display: inline-block;
+} */
+
+.search-btn {
+    margin-bottom: 0.25rem;
+    display: inline-block;
+    margin-left: 1rem;
+    color: white;
+    border-color: black;
+    background-color: black;
+}
+
+.search-btn:hover {
+    background-color: white !important;
+    color: black !important;
+}
