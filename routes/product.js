@@ -10,14 +10,32 @@ route.get('/', catchAsync(async (req, res) => {
     let noMatch=null;
     if (req.query.search) {
         const regex=new RegExp(escapeRegex(req.query.search), 'gi');
-        const products=await Product.find({ title: regex });
+        const page=parseInt(req.query.page)-1||0;
+        const limit=parseInt(req.query.limit)||5;
+        const products=await Product.find({ title: regex }).populate('author').skip(page*limit).limit(limit);
+        const totalPages=await Product.countDocuments({ title: regex })
+        const response={
+            error: false,
+            totalPages,
+            page: page+1,
+            limit,
+        };
         if (products.length<1) {
             noMatch="No Products match that query, please try again.";
         }
-        res.render('products/index', { products, noMatch });
+        res.render('products/index', { response, products, noMatch });
     } else {
-        const products=await Product.find({}).populate('author');                        //all products
-        res.render('products/index', { products, noMatch });
+        const page=parseInt(req.query.page)-1||0;
+        const limit=parseInt(req.query.limit)||5;
+        const products=await Product.find({}).populate('author').skip(page*limit).limit(limit);                       //all products
+        const totalPages=await Product.countDocuments({})
+        const response={
+            error: false,
+            totalPages,
+            page: page+1,
+            limit,
+        };
+        res.render('products/index', { products, noMatch, response });
     }
 }))
 route.get('/new', isLoggedIn, isSeller, (req, res) => {                          //new product page
