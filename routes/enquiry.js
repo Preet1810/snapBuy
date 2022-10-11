@@ -11,14 +11,14 @@ route.post('/', isLoggedIn, isUser, validateEnquiry, catchAsync(async (req, res)
     const enquiry=new Enquiry(req.body.enquiry);
     enquiry.author=req.user._id;
     const seller=await Seller.find({ companyname: (enquiry.seller) });
-    console.log(seller)
+    // console.log(seller)
     seller[0].enquiries.push(enquiry);
     await seller[0].save();
     await enquiry.save();
     req.flash('success', 'Successfully Sent Enquiry to Seller');
     res.redirect(`/products`);
-    console.log(enquiry)
-    console.log(seller)
+    // console.log(enquiry)
+    // console.log(seller)
 }))
 
 // route.delete('/:enquiryid', isLoggedIn, isSeller, catchAsync(async (req, res) => {
