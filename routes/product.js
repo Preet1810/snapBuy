@@ -11,9 +11,10 @@ route.get('/', catchAsync(async (req, res) => {
     if (req.query.search) {
         const regex=new RegExp(escapeRegex(req.query.search), 'gi');
         const page=parseInt(req.query.page)-1||0;
-        const limit=parseInt(req.query.limit)||5;
+        const limit=parseInt(req.query.limit)||9;
         const products=await Product.find({ title: regex }).populate('author').skip(page*limit).limit(limit);
         const totalPages=await Product.countDocuments({ title: regex })
+        console.log(totalPages)
         const response={
             error: false,
             totalPages,
@@ -26,9 +27,10 @@ route.get('/', catchAsync(async (req, res) => {
         res.render('products/index', { response, products, noMatch });
     } else {
         const page=parseInt(req.query.page)-1||0;
-        const limit=parseInt(req.query.limit)||5;
+        const limit=parseInt(req.query.limit)||9;
         const products=await Product.find({}).populate('author').skip(page*limit).limit(limit);                       //all products
         const totalPages=await Product.countDocuments({})
+        console.log(totalPages)
         const response={
             error: false,
             totalPages,
