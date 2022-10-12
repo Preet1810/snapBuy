@@ -129,7 +129,7 @@
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center mt-4">
             <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
+                <a class="page-link" id="less" href="/products" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
@@ -137,7 +137,8 @@
                 <% for(let num=0; response.totalPages>=num; num++) {%>
                     <% if(num%9==0) {%>
                         <% PN++%>
-                            <li class="page-item"><a class="page-link" href="#">
+                            <li class="page-item"><a class="page-link" id="currUrl" href="/products?page="
+                                    onclick="GetURL()">
                                     <%= PN %>
                                 </a></li>
                             <% } %>
@@ -149,3 +150,13 @@
                                     </li>
         </ul>
     </nav>
+
+    <!-- <script>
+        const list=document.querySelectorAll(".pagination li a");
+        // let gfg=document.URL;
+        // let currUrl=document.getElementById('currUrl');
+        // currUrl.href=gfg+'/hehe'
+        for (let b=0; b<list.length; b++) {
+            console.log(list[b]);
+        }
+    </script> -->

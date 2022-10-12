@@ -14,14 +14,15 @@ route.get('/', catchAsync(async (req, res) => {
         const limit=parseInt(req.query.limit)||9;
         const products=await Product.find({ title: regex }).populate('author').skip(page*limit).limit(limit);
         const totalPages=await Product.countDocuments({ title: regex })
-        console.log(totalPages)
+        // console.log(totalPages)
         const response={
             error: false,
             totalPages,
             page: page+1,
             limit,
         };
-        if (products.length<1) {
+        console.log(response.page)
+        if (totalPages<1) {
             noMatch="No Products match that query, please try again.";
         }
         res.render('products/index', { response, products, noMatch });
