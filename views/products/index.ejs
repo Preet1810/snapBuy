@@ -128,8 +128,8 @@
 
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center mt-4">
-            <li class="page-item">
-                <a class="page-link" id="less" href="/products" aria-label="Previous">
+            <li class="prev page-item" style="display: none;">
+                <a class="page-link" id="less" href="#" onclick="GetURL()" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
@@ -143,8 +143,8 @@
                                 </a></li>
                             <% } %>
                                 <% } %>
-                                    <li class="page-item">
-                                        <a class="page-link" href="/products?page=5" aria-label="Next">
+                                    <li class="next page-item" style="display: none;">
+                                        <a class="page-link" aria-label="Next" href="#" onclick="GetURL()">
                                             <span aria-hidden="true">&raquo;</span>
                                         </a>
                                     </li>

@@ -18,12 +18,10 @@ function form_submit() {
 
 function GetURL() {
     const list=document.querySelectorAll(".pagination li a");
-    const less=document.getElementById('less');
+    // const less=document.getElementById('less');
     const curr=document.URL
     for (let b=0; b<list.length; b++) {
         if (curr.includes('search=')) {
-            // let newCurr=curr.replace(/page=/+b, 'page='+b)
-            // list[b].href=newCurr;
             if (curr.includes('page=')) {
                 let newCurr=curr.slice(0, -1);
                 let moreCurr=newCurr.replace(/page=/, 'page='+b)
@@ -33,15 +31,14 @@ function GetURL() {
             }
         }
         else {
+            // console.log(list[b].href+b-1)
             list[b].href=list[b].href+b;
+            // less.href=b;
         }
-        // list[b].href=curr;
-        // let newCurr=curr.replace(/page=1/, 'page='+b)
-        // list[b].href=newCurr;
-
-        // less.href = less.href+'?page='+
     }
 }
+
+
 
 // function idk() {
 //     let gfg=document.URL;

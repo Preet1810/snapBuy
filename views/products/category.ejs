@@ -1,5 +1,5 @@
 <% layout('layouts/boilerplate')%>
-
+    <script src="/javascripts/categories.js"></script>
     <div class="mt-4">
         <h1 class="">
             <%= catPage[0].categories %>
@@ -36,3 +36,27 @@
                 <% } %>
         </div>
     </div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center mt-4">
+            <li class="prev page-item" style="display: none;">
+                <a class="page-link" id="less" href="#" onclick="GetURL()" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <% let PN=0 %>
+                <% for(let num=0; response.totalPages>=num; num++) {%>
+                    <% if(num%9==0) {%>
+                        <% PN++%>
+                            <li class="page-item"><a class="page-link" id="currUrl" href="/products?page="
+                                    onclick="GetURL()">
+                                    <%= PN %>
+                                </a></li>
+                            <% } %>
+                                <% } %>
+                                    <li class="next page-item" style="display: none;">
+                                        <a class="page-link" aria-label="Next" href="#" onclick="GetURL()">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+        </ul>
+    </nav>
