@@ -5,6 +5,9 @@ const ExpressError=require('../utils/ExpressErrors');
 const Product=require('../model/products');
 const { isLoggedIn, isAuthor, validateProduct, isSeller }=require('../middleware');
 const Seller=require('../model/seller');
+const multer=require('multer');
+const { storage, cloudinary }=require('../cloudinary');
+const upload=multer({ storage });
 
 route.get('/', catchAsync(async (req, res) => {
     let noMatch=null;
@@ -45,11 +48,16 @@ route.get('/new', isLoggedIn, isSeller, (req, res) => {                         
     res.render('products/new');
 })
 
-route.post('/', isLoggedIn, isSeller, validateProduct, catchAsync(async (req, res, next) => {
+route.post('/', isLoggedIn, isSeller, upload.array('image'), validateProduct, catchAsync(async (req, res, next) => {
+    // console.log(req.body, req.files);
+    // res.send('worked');
+
     const product=new Product(req.body.product);              //CREATING NEW PRODUCT 63355666d4c25e7696191ba2
+    product.images=req.files.map(f => ({ url: f.path, filename: f.filename }))
     product.author=req.user._id;
-    console.log(product.author);
+    // console.log(product.author);
     await product.save();
+    console.log(product);
     req.flash('success', 'Successfully Made A New Product');    //FLASH
     res.redirect(`/products/${product._id}`)
 }))
@@ -61,7 +69,7 @@ route.get('/:id', catchAsync(async (req, res) => {
             path: 'author'
         }
     }).populate('author');              //show page  populating reviews so that those object id will also have the body of review
-    console.log(product.reviews)
+    // console.log(product.reviews)
     if (!product) {
         req.flash('error', 'Cannot find that Product!');
         return res.redirect('/products')
@@ -71,6 +79,7 @@ route.get('/:id', catchAsync(async (req, res) => {
 
 route.get('/:id/edit', isLoggedIn, isSeller, isAuthor, catchAsync(async (req, res) => {
     const product=await Product.findById(req.params.id)      //edit form
+    console.log(product)
     if (!product) {
         req.flash('error', 'Cannot find that Product!');
         return res.redirect('/products')
@@ -78,9 +87,19 @@ route.get('/:id/edit', isLoggedIn, isSeller, isAuthor, catchAsync(async (req, re
     res.render('products/edit', { product });
 }))
 
-route.put('/:id', isLoggedIn, isSeller, isAuthor, validateProduct, catchAsync(async (req, res) => {
+route.put('/:id', isLoggedIn, isSeller, isAuthor, upload.array('image'), validateProduct, catchAsync(async (req, res) => {
     const { id }=req.params;
     const product=await Product.findByIdAndUpdate(id, { ...req.body.product });   //editing
+    const imgs=req.files.map(f => ({ url: f.path, filename: f.filename }))
+    product.images.push(...imgs);
+    await product.save();
+    if (req.body.deleteImages) {
+        for (let filename of req.body.deleteImages) {
+            await cloudinary.uploader.destroy(filename);
+        }
+        await product.updateOne({ $pull: { images: { filename: { $in: req.body.deleteImages } } } })
+        console.log(product)
+    }
     req.flash('success', 'Successfully Edited the Product');
     res.redirect(`/products/${product._id}`)
 }));
