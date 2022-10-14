@@ -21,7 +21,7 @@ route.get('/', catchAsync(async (req, res) => {
             page: page+1,
             limit,
         };
-        console.log(response.page)
+        // console.log(response.page)
         if (totalPages<1) {
             noMatch="No Products match that query, please try again.";
         }
@@ -31,7 +31,7 @@ route.get('/', catchAsync(async (req, res) => {
         const limit=parseInt(req.query.limit)||9;
         const products=await Product.find({}).populate('author').skip(page*limit).limit(limit);                       //all products
         const totalPages=await Product.countDocuments({})
-        console.log(totalPages)
+        // console.log(totalPages)
         const response={
             error: false,
             totalPages,

@@ -1,14 +1,4 @@
-h1 {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-}
-
-h2 {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-}
-
-.product-card {
+.card {
     width: 400px;
     height: 575px;
     background-position: center center;
@@ -61,6 +51,7 @@ h2 {
 
 
 .contactnum {
+    /* float: left; */
     /* margin-right: 10px; */
     margin-left: 0.5rem;
 }
@@ -69,7 +60,6 @@ h2 {
     background-color: rgb(150, 162, 162);
     border-color: rgb(150, 162, 162);
     margin-left: 1rem;
-    /* margin-right: 1rem; */
 }
 
 .view-details:hover {

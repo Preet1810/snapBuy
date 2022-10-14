@@ -1,5 +1,6 @@
 <% layout('layouts/boilerplate')%>
     <script src="/javascripts/categories.js"></script>
+    <link rel="stylesheet" href="/styleSheets/categories.css">
     <div class="mt-4">
         <h1 class="">
             <%= catPage[0].categories %>
@@ -12,28 +13,120 @@
                         <img src="<%= catPages.image %> " class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">
-                                <a href="/products/<%= catPages._id %> ">
+                                <a id="productname" href="/products/<%= catPages._id %> ">
                                     <%= catPages.title %>
                                 </a>
                             </h5>
-                            <p class="card-text">
+                            <p class="card-text description">
                                 <%= catPages.description %>
                             </p>
-
-                            <b class="card-text">Category: <a href="/products/categories/<%= catPages.categories %>">
-                                    <%= catPages.categories %>
-                                </a></b>
-                            <p class="card-text">
-                                <b>
-                                    <%= catPages.sellerName %> Group
-                                </b>
+                            <p class="category">
+                                <b class="card-text">Category: <a id="cata"
+                                        href="/products/categories/<%= catPages.categories %>">
+                                        <%= catPages.categories %>
+                                    </a></b>
                             </p>
+                            <div class="inli contactnum">
+                                <p class="card-text contact"> <i class=" fa-solid fa-phone"></i>+91
+                                    <%= catPages.author.contactnumber %>
+                                </p>
+                            </div>
+                            <div class="inli">
+                                <a href="/products/<%= catPages._id %> "
+                                    class="btn btn-primary btn-sm view-details">View
+                                    Details</a>
+                            </div>
+                            <% if(!currentUser) {%>
+                                <a href="/login/buyer" class="btn btn-primary btn-sm modalbtn inli">Enquiry</a>
+                                <% }else if(currentUser && !currentUser.isSeller) { %>
+                                    <button type="button" class="btn btn-primary btn-sm modalbtn inli"
+                                        data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        Enquiry
+                                    </button>
+                                    <% } %>
+                                        <p class="card-text seller">
+                                            <a href="/seller/<%= catPages.author.companyname %>">
+
+                                                <b id="sellername">
+                                                    <%= catPages.author.companyname %>
+                                                </b>
+
+                                            </a>
+                                        </p>
 
                         </div>
                     </div>
                 </div>
 
                 <% } %>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Post Your Requirement</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="panel">
+                        <form action="/enquiry" method="POST" class="needs-validation row g-3" novalidate
+                            id="search_form">
+
+                            <div class="col-md-6">
+                                <label for="service" class="form-label">Product/Service</label>
+                                <input type="text" class="form-control" id="pname" name="enquiry[productname]" readonly
+                                    required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="seller" class="form-label">Seller</label>
+                                <input type="text" class="form-control" id="sname" name="enquiry[seller]" readonly
+                                    required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="quantity" class="form-label">Quantity</label>
+                                <input type="text" id="quantity" class="form-control" name="enquiry[quantity]" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="unit" class="form-label">Unit</label>
+                                <select id="unit" class="form-control" name="enquiry[unit]" required>
+                                    <option value="Piece" name="enquiry[unit]">Piece</option>
+                                    <option value="Litre" name="enquiry[unit]">Litre</option>
+                                    <option value="KG" name="enquiry[unit]">KG</option>
+                                    <option value="Units" name="enquiry[unit]">Units</option>
+                                    <option value="Meter" name="enquiry[unit]">Meter</option>
+                                    <option value="Sq ft" name="enquiry[unit]">Sq ft </option>
+                                    <option value="Inch" name="enquiry[unit]">Inch</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="buyingBody" class="form-label">Describe Your Buying
+                                    Requirement</label>
+                                <textarea id="buyingBody" cols="20" rows="3" class="form-control"
+                                    name="enquiry[buyingBody]" required></textarea>
+                            </div>
+                            <% if( currentUser && !currentUser.isSeller) {%>
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" id="email" class="form-control" name="enquiry[email]" readonly
+                                        required value="<%= currentUser.email %> ">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="number" class="form-label">Contact No.</label>
+                                    <input type="text" id="number" class="form-control" name="enquiry[contact]" readonly
+                                        required value="<%= currentUser.contactNumber %> ">
+                                </div>
+                                <% }%>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="button" onclick="form_submit()" class="btn btn-primary">Send
+                                            Enquiry</button>
+                                    </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <nav aria-label="Page navigation example">
@@ -47,8 +140,7 @@
                 <% for(let num=0; response.totalPages>=num; num++) {%>
                     <% if(num%9==0) {%>
                         <% PN++%>
-                            <li class="page-item"><a class="page-link" id="currUrl" href="/products?page="
-                                    onclick="GetURL()">
+                            <li class="page-item"><a class="page-link" id="currUrl" href="" onclick="GetURL()">
                                     <%= PN %>
                                 </a></li>
                             <% } %>

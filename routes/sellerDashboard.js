@@ -59,11 +59,18 @@ route.delete('/seller/enquiry/:enquiryid', isLoggedIn, isSeller, catchAsync(asyn
 
 route.get('/seller/:id', catchAsync(async (req, res) => {
     const { id }=req.params;
+    const page=parseInt(req.query.page)-1||0;
+    const limit=parseInt(req.query.limit)||9;
     const seller=await Seller.find({ companyname: (id) })
-    // console.log(seller)
-    const products=await Product.find({ author: (seller[0]._id) })
-    // console.log(products)
-    res.render('users/seller/sellerPage', { seller, products })
+    const products=await Product.find({ author: (seller[0]._id) }).populate('author').skip(page*limit).limit(limit);
+    const totalPages=await Product.countDocuments({ author: (seller[0]._id) })
+    const response={
+        error: false,
+        totalPages,
+        page: page+1,
+        limit,
+    };
+    res.render('users/seller/sellerPage', { seller, products, response })
 }))
 
 

@@ -1,6 +1,7 @@
 <% layout('layouts/boilerplate')%>
     <link rel="stylesheet" href="/styleSheets/indexImages.css">
     <script src="/javascripts/index.js"></script>
+
     <div class="mt-4">
         <% if(noMatch !==null) { %>
             <h3 class="nomatch">
@@ -15,7 +16,7 @@
                             <div class="row row-cols-1 row-cols-md-3 g-4">
                                 <% for(let product of products) {%>
                                     <div class="col">
-                                        <div class="card h-100">
+                                        <div class="card">
                                             <img src="<%= product.image %> " class="card-img-top" alt="">
                                             <div class="card-body">
                                                 <h5 class="card-title">
@@ -23,30 +24,45 @@
                                                         <%= product.title %>
                                                     </a>
                                                 </h5>
-                                                <p class="card-text">
+                                                <p class="card-text description">
                                                     <%= product.description %>
                                                 </p>
-
-                                                <b class="card-text">Category: <a
+                                                <p class="card-text category">
+                                                    <b class="cate">Category:</b> <a id="cata"
                                                         href="/products/categories/<%= product.categories %>">
                                                         <%= product.categories %>
-                                                    </a></b>
+                                                    </a>
+                                                </p>
+                                                <div class="inli contactnum">
+                                                    <p class="card-text contact"> <i class=" fa-solid fa-phone"></i>+91
+                                                        <%= product.author.contactnumber %>
+                                                    </p>
+                                                </div>
+                                                <div class="inli">
+                                                    <a href="/products/<%= product._id %> "
+                                                        class="btn btn-primary btn-sm view-details">View Details</a>
+                                                </div>
+
                                                 <% if(!currentUser) {%>
-                                                    <a href="/login/buyer" class="btn btn-primary btn-sm">Enquiry</a>
+                                                    <a href="/login/buyer"
+                                                        class="btn btn-primary btn-sm modalbtn inli">Enquiry</a>
+
+
                                                     <% }else if(currentUser && !currentUser.isSeller) { %>
-                                                        <button type=" button" class="btn btn-primary btn-sm modalbtn"
+                                                        <button type="button"
+                                                            class="inli btn btn-primary btn-sm modalbtn"
                                                             data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                             Enquiry
                                                         </button>
                                                         <% } %>
 
-                                                            <p class="card-text">
+                                                            <p class="card-text seller">
                                                                 <a href="/seller/<%= product.author.companyname %>">
-                                                                    <div>
-                                                                        <b id="sellername">
-                                                                            <%= product.author.companyname %>
-                                                                        </b>
-                                                                    </div>
+
+                                                                    <b id="sellername">
+                                                                        <%= product.author.companyname %>
+                                                                    </b>
+
                                                                 </a>
                                                             </p>
                                             </div>

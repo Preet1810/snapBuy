@@ -1,8 +1,29 @@
-.card-img-top {
+/* body {
+    background-color: #9575cd;
+} */
+
+.card {
     width: 400px;
-    height: 300px;
+    height: 575px;
     background-position: center center;
     background-repeat: no-repeat;
+}
+
+
+.card-img-top {
+    margin-top: 1rem !important;
+    display: block;
+    margin: 0 auto;
+    width: 350px;
+    height: 250px;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+#productname {
+    margin-left: 0.5rem;
+    text-decoration: none;
+    color: black;
 }
 
 .nomatch {
@@ -11,4 +32,65 @@
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+}
+
+.description {
+    margin-left: 0.5rem;
+    margin-bottom: 2rem;
+    width: 360px;
+    height: 100px;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.category {
+    margin-top: 3.5rem;
+    margin-left: 0.5rem;
+}
+
+#cata {
+    text-decoration: none;
+    color: black;
+}
+
+
+.contactnum {
+    margin-right: 10px;
+    margin-left: 0.5rem;
+}
+
+.view-details {
+    background-color: rgb(150, 162, 162);
+    border-color: rgb(150, 162, 162);
+    margin-right: 1rem;
+}
+
+.view-details:hover {
+    background-color: #5e35b1 !important;
+    border-color: #5e35b1 !important;
+}
+
+.modalbtn {
+    background-color: rgb(150, 162, 162);
+    border-color: rgb(150, 162, 162);
+}
+
+.modalbtn:hover {
+    background-color: #5e35b1 !important;
+    border-color: #5e35b1 !important;
+}
+
+.seller a {
+    text-decoration: none;
+    color: black;
+    margin-left: 0.5rem;
+}
+
+.seller {
+    margin-top: 0.5rem;
+
+}
+
+.inli {
+    display: inline-block;
 }

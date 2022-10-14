@@ -3,7 +3,7 @@
     <div class="row mt-4">
         <h1 class="text-center">New Product</h1>
         <div class="col-6 offset-3">
-            <form action="/products" method="POST" novalidate class="needs-validation">
+            <form action="/products" method="POST" novalidate class="needs-validation" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label class="form-label" for="title">Product Name</label>
                     <input class="form-control" type="text" id="title" name="product[title]" required>
@@ -26,11 +26,12 @@
                     </select>
                 </div>
                 <div>
+                    <input type="file" class="image" name="product">
 
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                         <label class="form-label" for="image">Image Url</label>
                         <input class="form-control" type="text" id="image" name="product[image]" required>
-                    </div>
+                    </div> -->
                     <div class="mb-3">
                         <label class="form-label" for="price">Product Price</label>
                         <div class="input-group">
