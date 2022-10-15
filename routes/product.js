@@ -5,6 +5,8 @@ const ExpressError=require('../utils/ExpressErrors');
 const Product=require('../model/products');
 const { isLoggedIn, isAuthor, validateProduct, isSeller }=require('../middleware');
 const Seller=require('../model/seller');
+const User=require('../model/user');
+
 const multer=require('multer');
 const { storage, cloudinary }=require('../cloudinary');
 const upload=multer({ storage });
@@ -66,9 +68,11 @@ route.get('/:id', catchAsync(async (req, res) => {
     const product=await Product.findById(req.params.id).populate({
         path: 'reviews',
         populate: {
-            path: 'author'
+            path: "reviewFromUser reviewFromSeller",
         }
-    }).populate('author');              //show page  populating reviews so that those object id will also have the body of review
+    }).populate('author')
+    // await product.reviews.populate('author')
+    console.log(product.reviews)          //show page  populating reviews so that those object id will also have the body of review
     // console.log(product.reviews)
     if (!product) {
         req.flash('error', 'Cannot find that Product!');

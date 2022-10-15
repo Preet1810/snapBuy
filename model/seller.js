@@ -34,6 +34,7 @@ const SellerSchema=new Schema({
             ref: 'Enquiry',
         }
     ],
+
     image: String,
     aboutcompany: String,
     nature: String

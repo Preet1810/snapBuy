@@ -154,7 +154,11 @@
                                             <%= review.body %>
                                         </p>
                                         <h6 class="card-subtitle mb-2 text-muted">
-                                            <%= review.author.username%>
+                                            <% if(review.reviewFromSeller !=null) {%>
+                                                <%= review.reviewFromSeller.username%>
+                                                    <% }else if(review.reviewFromUser !=null){%>
+                                                        <%= review.reviewFromUser.username %>
+                                                            <% } %>
                                         </h6>
                                         <% if(currentUser && review.author.equals(currentUser._id)) {%>
                                             <form
