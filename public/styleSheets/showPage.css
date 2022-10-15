@@ -1,0 +1,80 @@
+.main-card {
+    width: 600px;
+    height: 770px;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.main-img {
+    display: block;
+    margin: 0 auto;
+    width: 550px;
+    height: 550px;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.carousel-control-prev {
+    margin-bottom: 9rem;
+}
+
+.carousel-control-next {
+    margin-bottom: 9rem;
+}
+
+.card-title {
+    margin-top: 1rem;
+}
+
+.modalbtn {
+    margin-top: 0.5rem;
+    background-color: rgb(150, 162, 162);
+    border-color: rgb(150, 162, 162);
+    height: 2.5rem;
+    font-size: 1.25rem;
+}
+
+.modalbtn:hover {
+    background-color: #5e35b1 !important;
+    border-color: #5e35b1 !important;
+}
+
+.inli {
+    display: inline-block;
+}
+
+.list-group {
+    font-size: 18px;
+    margin-top: -2rem;
+    margin-left: -0.5rem;
+}
+
+#cata {
+    text-decoration: none;
+    color: black;
+}
+
+#selle {
+    text-decoration: none;
+    color: black;
+}
+
+.btn-submit {
+    background-color: rgb(150, 162, 162);
+    border-color: rgb(150, 162, 162);
+}
+
+.btn-submit:hover {
+    background-color: #5e35b1 !important;
+    border-color: #5e35b1 !important;
+}
+
+.btn-delete {
+    background-color: rgb(150, 162, 162);
+    border-color: rgb(150, 162, 162);
+}
+
+.btn-delete:hover {
+    background-color: rgb(186, 59, 59) !important;
+    border-color: red !important;
+}

@@ -22,7 +22,7 @@
         <% for(let product of products) {%>
             <div class="col">
                 <div class="card d-flex justify-content-md-center">
-                    <img src="<%= product.image %> " class="card-img-top" alt="">
+                    <img src="<%= product.images[0].indexImage %> " class="card-img-top" alt="">
                     <div class="card-body">
                         <h5 class="card-title">
                             <a href="/products/<%= product._id %> ">
@@ -39,7 +39,7 @@
             </div>
 
             <% } %>
-                <div class="card d-flex justify-content-md-center">
+                <div class="card d-flex justify-content-md-center mb-4">
                     <a href="/products/new">
                         <img src="/icons/more.png" alt="" class="card-img-top">
                 </div>

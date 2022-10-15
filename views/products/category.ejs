@@ -10,7 +10,7 @@
             <% for(let catPages of catPage) {%>
                 <div class="col">
                     <div class="card h-100">
-                        <img src="<%= catPages.image %> " class="card-img-top" alt="">
+                        <img src="<%= catPages.images[0].indexImage %> " class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">
                                 <a id="productname" href="/products/<%= catPages._id %> ">
