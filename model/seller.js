@@ -20,7 +20,7 @@ const SellerSchema=new Schema({
         type: String,
         required: true
     },
-    contactnumber: {
+    contactNumber: {
         type: Number,
         required: true
     },

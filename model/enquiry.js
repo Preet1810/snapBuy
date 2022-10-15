@@ -11,8 +11,25 @@ const enquirySchema=new Schema({
     seller: String,
     author: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        // ref: 'User'
     }
+},
+    {
+        toObject: { virtuals: true }
+
+    });
+
+enquirySchema.virtual('enquiryFromUser', {
+    ref: 'User',
+    localField: 'author',
+    foreignField: '_id',
+    justOne: true
+});
+enquirySchema.virtual('enquiryFromSeller', {
+    ref: 'Seller',
+    localField: 'author',
+    foreignField: '_id',
+    justOne: true
 });
 
 module.exports=mongoose.model('Enquiry', enquirySchema);

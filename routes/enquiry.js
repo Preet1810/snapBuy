@@ -7,7 +7,7 @@ const Seller=require('../model/seller');
 
 const { isLoggedIn, isUser, isSeller, validateEnquiry }=require('../middleware');
 
-route.post('/', isLoggedIn, isUser, validateEnquiry, catchAsync(async (req, res) => {
+route.post('/', isLoggedIn, validateEnquiry, catchAsync(async (req, res) => {
     const enquiry=new Enquiry(req.body.enquiry);
     enquiry.author=req.user._id;
     const seller=await Seller.find({ companyname: (enquiry.seller) });
@@ -17,7 +17,7 @@ route.post('/', isLoggedIn, isUser, validateEnquiry, catchAsync(async (req, res)
     await enquiry.save();
     req.flash('success', 'Successfully Sent Enquiry to Seller');
     res.redirect(`/products`);
-    // console.log(enquiry)
+    console.log(enquiry)
     // console.log(seller)
 }))
 

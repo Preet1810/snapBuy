@@ -40,10 +40,10 @@ route.get('/seller/enquiry', isLoggedIn, isSeller, catchAsync(async (req, res) =
     const seller=await Seller.findById(`${req.user._id}`).populate({
         path: 'enquiries',
         populate: {
-            path: 'author'
+            path: "enquiryFromUser enquiryFromSeller"
         }
     });
-    // console.log(seller.enquiries)
+    console.log(seller.enquiries)
 
     res.render('users/seller/enquiries', { seller })
 }))

@@ -35,7 +35,7 @@
                                                 </p>
                                                 <div class="inli contactnum">
                                                     <p class="card-text contact"> <i class=" fa-solid fa-phone"></i>+91
-                                                        <%= product.author.contactnumber %>
+                                                        <%= product.author.contactNumber %>
                                                     </p>
                                                 </div>
                                                 <div class="inli">
@@ -48,7 +48,7 @@
                                                         class="btn btn-primary btn-sm modalbtn inli">Enquiry</a>
 
 
-                                                    <% }else if(currentUser && !currentUser.isSeller) { %>
+                                                    <% }else{ %>
                                                         <button type="button"
                                                             class="inli btn btn-primary btn-sm modalbtn"
                                                             data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -117,7 +117,7 @@
                                 <textarea id="buyingBody" cols="20" rows="3" class="form-control"
                                     name="enquiry[buyingBody]" required></textarea>
                             </div>
-                            <% if( currentUser && !currentUser.isSeller) {%>
+                            <% if( currentUser) {%>
                                 <div class="col-md-6">
                                     <label for="email" class="form-label">Email</label>
                                     <input type="email" id="email" class="form-control" name="enquiry[email]" readonly
@@ -129,6 +129,7 @@
                                         required value="<%= currentUser.contactNumber %> ">
                                 </div>
                                 <% }%>
+
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                             data-bs-dismiss="modal">Close</button>
