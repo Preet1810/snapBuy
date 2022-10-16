@@ -16,16 +16,14 @@
                     <a class="nav-link" href="/products/new">New Product</a>
                     <% } %>
             </div>
-            <form action="/products" method="GET" class="form-inline">
-                <div class="form-group search-pro">
-                    <input type="text" name="search" placeholder=" Search..." class="form-control search-form">
-                    <input type="submit" value="Search" class="btn btn-default search-btn">
-                </div>
-            </form>
-            <!-- <form action="/products" method="GET" class="d-flex search-form" role="search">
-                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-                <button class="search-btn btn btn-outline-success" type="submit">Search</button>
-            </form> -->
+            <div class="navbar-nav ms-auto">
+                <form action="/products" method="GET" class="form-inline">
+                    <div class="form-group search-pro">
+                        <input type="text" name="search" placeholder=" Search..." class="form-control search-form">
+                        <input type="submit" value="Search" class="btn btn-default search-btn">
+                    </div>
+                </form>
+            </div>
             <div class="navbar-nav ms-auto">
                 <% if(!currentUser) {%>
                     <div class="dropdown">
@@ -40,9 +38,11 @@
                     </div>
                     <a href="/register" class="nav-link" style="color:white">Register</a>
                     <% } else {%>
-                        <a class="icon" href="/seller/dashboard"><i class="fa-solid fa-user fa-2xl"></i></a>
-                        <a href="/logout" class="nav-link">Logout</a>
-                        <% } %>
+                        <% if(currentUser && currentUser.isSeller) {%>
+                            <a class="icon" href="/seller/dashboard"><i class="fa-solid fa-user fa-2xl"></i></a>
+                            <% } %>
+                                <a href="/logout" class="nav-link">Logout</a>
+                                <% } %>
 
             </div>
         </div>

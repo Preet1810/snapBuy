@@ -29,22 +29,32 @@
                                     <span class="visually-hidden">Next</span>
                                 </button>
                                 <% } %>
-                                    <div class="">
-                                        <h5 class="card-title" id="productname">
+                                    <div class="" style="display: inline-block;">
+                                        <h5 class=" card-title" id="productname">
                                             <%= product.title%>
                                         </h5>
                                     </div>
+                                    <% if(currentUser && product.author.equals(currentUser._id)){%>
+                                        <div class="card-body" style="display: inline-block;">
+                                            <a class="card-link btn btn-info edit-btn"
+                                                href="/products/<%= product._id %>/edit ">Edit</a>
+                                            <form class="d-inline" action="/products/<%=product._id%>?_method=DELETE"
+                                                method="POST" method="POST">
+                                                <button class="btn btn-danger dlt-btn">Delete</button>
+                                            </form>
+                                        </div>
+                                        <% } %>
 
-                                    <p class="card-text description">
-                                        <%= product.description%>
-                                    </p>
+                                            <p class="card-text description">
+                                                <%= product.description%>
+                                            </p>
                         </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item"><b>Price: </b> ₹<%= product.price%>
                             </li>
                             <li class="list-group-item">
                                 <i class=" fa-solid fa-phone"></i>+91
-                                <%= product.author.contactnumber %>
+                                <%= product.author.contactNumber %>
                             </li>
 
                             <li class="list-group-item">
@@ -64,22 +74,14 @@
                                 <a href="/login/buyer" class="btn btn-primary btn-sm modalbtn inli">Enquiry</a>
 
 
-                                <% }else if(currentUser && !currentUser.isSeller) { %>
+                                <% }else{ %>
                                     <button type="button" class="inli btn btn-primary btn-sm modalbtn"
                                         data-bs-toggle="modal" data-bs-target="#exampleModal">
                                         Enquiry
                                     </button>
                                     <% } %>
                         </ul>
-                        <% if(currentUser && product.author.equals(currentUser._id)){%>
-                            <div class="card-body">
-                                <a class="card-link btn btn-info" href="/products/<%= product._id %>/edit ">Edit</a>
-                                <form class="d-inline" action="/products/<%=product._id%>?_method=DELETE" method="POST"
-                                    method="POST">
-                                    <button class="btn btn-danger">Delete</button>
-                                </form>
-                            </div>
-                            <% } %>
+
                     </div>
                 </div>
 
@@ -223,7 +225,7 @@
                                 <textarea id="buyingBody" cols="20" rows="3" class="form-control"
                                     name="enquiry[buyingBody]" required></textarea>
                             </div>
-                            <% if( currentUser && !currentUser.isSeller) {%>
+                            <% if( currentUser) {%>
                                 <div class="col-md-6">
                                     <label for="email" class="form-label">Email</label>
                                     <input type="email" id="email" class="form-control" name="enquiry[email]" readonly

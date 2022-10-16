@@ -16,7 +16,7 @@
                             <div class="row row-cols-1 row-cols-md-3 g-4">
                                 <% for(let product of products) {%>
                                     <div class="col">
-                                        <div class="card">
+                                        <div class="card text-bg-light">
                                             <img src="<%= product.images[0].indexImage %> " class="card-img-top" alt="">
                                             <div class="card-body">
                                                 <h5 class="card-title">
@@ -82,9 +82,8 @@
                 </div>
                 <div class="modal-body">
                     <div class="panel">
-                        <form action="/enquiry" method="POST" class="needs-validation row g-3" novalidate
-                            id="search_form">
-
+                        <form action="/enquiry" method="POST" class="needs-validation row g-3" id="search_form"
+                            novalidate>
                             <div class="col-md-6">
                                 <label for="service" class="form-label">Product/Service</label>
                                 <input type="text" class="form-control" id="pname" name="enquiry[productname]" readonly
@@ -133,7 +132,7 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                             data-bs-dismiss="modal">Close</button>
-                                        <button type="button" onclick="form_submit()" class="btn btn-primary">Send
+                                        <button type="submit" class="btn btn-primary">Send
                                             Enquiry</button>
                                     </div>
                         </form>

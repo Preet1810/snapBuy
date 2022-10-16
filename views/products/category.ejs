@@ -5,11 +5,10 @@
         <h1 class="">
             <%= catPage[0].categories %>
         </h1>
-        <h2><a href="/products/new">Create a product</a></h2>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <% for(let catPages of catPage) {%>
                 <div class="col">
-                    <div class="card h-100">
+                    <div class="card text-bg-light h-100">
                         <img src="<%= catPages.images[0].indexImage %> " class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">
@@ -28,7 +27,7 @@
                             </p>
                             <div class="inli contactnum">
                                 <p class="card-text contact"> <i class=" fa-solid fa-phone"></i>+91
-                                    <%= catPages.author.contactnumber %>
+                                    <%= catPages.author.contactNumber %>
                                 </p>
                             </div>
                             <div class="inli">
@@ -38,7 +37,7 @@
                             </div>
                             <% if(!currentUser) {%>
                                 <a href="/login/buyer" class="btn btn-primary btn-sm modalbtn inli">Enquiry</a>
-                                <% }else if(currentUser && !currentUser.isSeller) { %>
+                                <% }else{ %>
                                     <button type="button" class="btn btn-primary btn-sm modalbtn inli"
                                         data-bs-toggle="modal" data-bs-target="#exampleModal">
                                         Enquiry
@@ -105,7 +104,7 @@
                                 <textarea id="buyingBody" cols="20" rows="3" class="form-control"
                                     name="enquiry[buyingBody]" required></textarea>
                             </div>
-                            <% if( currentUser && !currentUser.isSeller) {%>
+                            <% if( currentUser) {%>
                                 <div class="col-md-6">
                                     <label for="email" class="form-label">Email</label>
                                     <input type="email" id="email" class="form-control" name="enquiry[email]" readonly

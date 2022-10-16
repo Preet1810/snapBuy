@@ -1,6 +1,6 @@
 .main-card {
     width: 600px;
-    height: 770px;
+    height: 777px;
     background-position: center center;
     background-repeat: no-repeat;
 }
@@ -24,14 +24,47 @@
 
 .card-title {
     margin-top: 1rem;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+}
+
+.seller-btns {
+    display: inline-block;
+    margin-left: 16.5rem;
+}
+
+.edit-btn {
+    color: aliceblue;
+    background-color: rgb(150, 162, 162);
+    border-color: rgb(150, 162, 162);
+}
+
+.edit-btn:hover {
+    background-color: #5e35b1 !important;
+    border-color: #5e35b1 !important;
+}
+
+.dlt-btn {
+    background-color: rgb(150, 162, 162);
+    border-color: rgb(150, 162, 162);
+}
+
+.dlt-btn:hover {
+    color: aliceblue !important;
+    background-color: rgb(186, 59, 59) !important;
+    border-color: rgb(186, 59, 59) !important;
+}
+
+.description {
+    margin-bottom: 10rem;
 }
 
 .modalbtn {
     margin-top: 0.5rem;
     background-color: rgb(150, 162, 162);
     border-color: rgb(150, 162, 162);
-    height: 2.5rem;
-    font-size: 1.25rem;
+    height: 2rem;
+    font-size: 1rem;
 }
 
 .modalbtn:hover {
@@ -45,7 +78,7 @@
 
 .list-group {
     font-size: 18px;
-    margin-top: -2rem;
+    margin-top: -1rem;
     margin-left: -0.5rem;
 }
 

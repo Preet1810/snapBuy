@@ -17,7 +17,7 @@ route.post('/register/seller', catchAsync(async (req, res, next) => {
         req.login(registeredSeller, err => {                              //after registering it logins the registered user
             if (err) return next(err);
             req.user.isSeller=true;
-            req.flash('success', 'SELLER LOGIN');
+            req.flash('success', 'Welcome to SnapBuy');
             res.redirect('/products');
         })
     } catch (e) {

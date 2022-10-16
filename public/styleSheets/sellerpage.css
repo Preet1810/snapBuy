@@ -17,6 +17,7 @@ h2 {
 
 
 .card-img-top {
+
     margin-top: 1rem !important;
     display: block;
     margin: 0 auto;
@@ -24,6 +25,12 @@ h2 {
     height: 250px;
     background-position: center center;
     background-repeat: no-repeat;
+}
+
+.seller-img {
+    width: 550px;
+    height: 300px;
+    margin-top: 3.5rem;
 }
 
 #productname {
