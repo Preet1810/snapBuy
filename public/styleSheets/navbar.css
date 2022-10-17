@@ -13,13 +13,11 @@
 }
 
 .search-form {
-    display: inline-block;
-    width: 50rem;
+    width: 30rem;
 }
 
 .search-btn {
     margin-bottom: 0.25rem;
-    display: inline-block;
     margin-left: 1rem;
     color: white;
     border-color: black;

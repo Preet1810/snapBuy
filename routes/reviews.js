@@ -17,6 +17,7 @@ route.post('/', isLoggedIn, validateReview, catchAsync(async (req, res) => {
     console.log(review)
     req.flash('success', 'Successfully Made A New Review');
     res.redirect(`/products/${product._id}`);
+
 }))
 
 route.delete('/:reviewid', isLoggedIn, isReviewAuthor, catchAsync(async (req, res) => {

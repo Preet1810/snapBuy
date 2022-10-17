@@ -1,5 +1,13 @@
+.full-page {
+    margin-top: 3rem;
+    right: 50%;
+    top: 50%;
+    left: 50%;
+    bottom: 50%;
+    margin-bottom: 2.5rem;
+}
+
 .login-card {
-    margin-top: 2.5rem;
     background-color: #5e35b1 !important;
 }
 

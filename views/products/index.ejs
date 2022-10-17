@@ -43,28 +43,21 @@
                                                         class="btn btn-primary btn-sm view-details">View Details</a>
                                                 </div>
 
-                                                <% if(!currentUser) {%>
-                                                    <a href="/login/buyer"
-                                                        class="btn btn-primary btn-sm modalbtn inli">Enquiry</a>
 
+                                                <button type="button" class="inli btn btn-primary btn-sm modalbtn"
+                                                    data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                    Enquiry
+                                                </button>
 
-                                                    <% }else{ %>
-                                                        <button type="button"
-                                                            class="inli btn btn-primary btn-sm modalbtn"
-                                                            data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                            Enquiry
-                                                        </button>
-                                                        <% } %>
+                                                <p class="card-text seller">
+                                                    <a href="/seller/<%= product.author.companyname %>">
 
-                                                            <p class="card-text seller">
-                                                                <a href="/seller/<%= product.author.companyname %>">
+                                                        <b id="sellername">
+                                                            <%= product.author.companyname %>
+                                                        </b>
 
-                                                                    <b id="sellername">
-                                                                        <%= product.author.companyname %>
-                                                                    </b>
-
-                                                                </a>
-                                                            </p>
+                                                    </a>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>

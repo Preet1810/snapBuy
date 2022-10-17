@@ -115,8 +115,8 @@
                         </div>
                         <button class="btn btn-success btn-submit">Submit</button>
                     </form>
-                    <% } else{%>
-                        <form action="/login" method="GET" class="mb-3 needs-validation" novalidate>
+                    <% } else if(!currentUser){%>
+                        <form action="/login/seller" method="GET" class="mb-3 needs-validation" novalidate>
                             <!-- <div class="mb-3">
                             <label class="form-label" for="rating">Rating</label>
                             <input class="form-range" type="range" min="1" max="5" name="review[rating]" id="rating">

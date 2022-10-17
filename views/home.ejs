@@ -1,6 +1,135 @@
-<% layout('layouts/boilerplate')%>
-    <link rel="stylesheet" href="/styleSheets/home.css">
+<!DOCTYPE html>
+<html lang="en">
 
-    <div>
-        <h1>SNAPBUY</h1>
-    </div>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnapBuy</title>
+    <link rel="stylesheet" href="/styleSheets/home.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <!-- crossorigin="anonymous" -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+    <script src="https://kit.fontawesome.com/cad4c8ddee.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js "
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/@jarstone/dselect/dist/js/dselect.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="d-flex flex-column vh-100">
+    <main class="container mt-5">
+        <script src="https://kit.fontawesome.com/cad4c8ddee.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/styleSheets/home.css">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">SnapBuy</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+
+                        <a class="nav-link" style="color:white" href="/products">Products</a>
+                        <% if(currentUser && currentUser.isSeller) {%>
+                            <a class="nav-link" style="color:white" href="/products/new">New Product</a>
+                            <% } %>
+                    </div>
+                    <!-- <div class="navbar-nav ms-auto">
+                        <form action="/products" method="GET" class="form-inline">
+                            <div class="form-group search-pro">
+                                <input type="text" name="search" placeholder=" Search..."
+                                    class="form-control search-form">
+                                <input type="submit" value="Search" class="btn btn-default search-btn">
+                            </div>
+                        </form>
+                    </div> -->
+                    <div class="navbar-nav ms-auto">
+                        <% if(!currentUser) {%>
+                            <a class="nav-link" href="/register/seller" style="color:white">Add Your Business</a>
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false" style="color:white">
+                                    Login
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="/login/seller">Login as Seller</a></li>
+                                    <li><a class="dropdown-item" href="/login/buyer">Login as Buyer</a></li>
+                                </ul>
+                            </div>
+                            <a href="/register" class="nav-link" style="color:white">Register</a>
+                            <% } else if(currentUser && currentUser.isSeller) {%>
+                                <a class="icon" href="/seller/dashboard"><i class="fa-solid fa-user fa-2xl"></i></a>
+                                <a href="/logout" class="nav-link" style="color:white">Logout</a>
+                                <% }else{ %>
+                                    <a class="nav-link" href="/register/seller" style="color:white">Add Your
+                                        Business</a>
+                                    <a href="/logout" class="nav-link" style="color:white">Logout</a>
+                                    <% } %>
+
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div id="landing-header">
+            <div class="card main-card">
+                <div class="card-body ">
+                    <h5 class="card-title">Welcome to SnapBuy</h5>
+                    <div class="navbar-nav">
+                        <form action="/products" method="GET" class="form-inline">
+                            <div class="form-group search-pro search-nav d-flex justify-content-center">
+                                <input type="text" name="search" placeholder=" Search for Products..."
+                                    class="form-control search-form">
+                                <input type="submit" value="Search" class="btn btn-default search-btn">
+                            </div>
+                        </form>
+                    </div>
+                    <h6>Trending Categories</h6>
+                    <div class="btn-group d-flex justify-content-center">
+                        <a href="/products/categories/Appliances" class="btn btn-dark">Appliances</a>
+                        <a href="/products/categories/Electronics" class="btn btn-dark">Electronics</a>
+                        <a href="products/categories/Sports%20And%20Fitness" class="btn btn-dark">Sports</a>
+                        <a href="products/categories/Fashion" class="btn btn-dark">Fashion</a>
+                        <a href="products/categories/Safety%20And%20Hygiene%20Essentials"
+                            class="btn btn-dark">Hygiene</a>
+                        <a href="products/categories/Stationery%20And%20Office%20Supplies"
+                            class="btn btn-dark">Stationery</a>
+                    </div>
+                    <h6>About Us</h6>
+                    <div class="card-text text-center">
+                        <p>SnapBuy is one of the largest B2B portal & online business directory. You
+                            can find the top verified sellers, manufacturers, suppliers, wholesalers and more businesses
+                            listed with us. Our website is significantly better and customized to help you grow your
+                            business and easily accessible for the visitors. A buyer can get quality products and
+                            services from certified brands that are listed with SnapBuy. The
+                            businesses and service providers that have registered their company with us are all
+                            verified. We have been giving complete services to the clients that helps the businesses
+                            grow. We have categorised the product and services alphabetically that becomes easy for the
+                            visitors to find any product and services.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ul class="slideshow">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
