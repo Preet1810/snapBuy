@@ -37,10 +37,14 @@ module.exports.validateEnquiry=(req, res, next) => {
 
 module.exports.isLoggedIn=(req, res, next) => {
     if (!req.isAuthenticated()) {
-        // console.log(req.path, req.originalUrl)
-        req.session.returnTo=req.originalUrl
-        req.flash('error', 'You Must Be Signed In');
-        return res.redirect('/products')
+        if (req.originalUrl.includes('reviews')) {
+            const newUrl=req.originalUrl.slice(0, -8);
+            req.session.returnTo=newUrl
+        } else {
+            req.session.returnTo=req.originalUrl
+            req.flash('error', 'You Must Be Signed In');
+        }
+        return res.redirect('/login/seller')
     }
     next()
 }
