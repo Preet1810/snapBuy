@@ -9,3 +9,38 @@
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
     opacity: 85%;
 }
+
+.full-page {
+    margin-left: 23rem;
+    margin-top: 3rem;
+    right: 50%;
+    top: 50%;
+    left: 50%;
+    bottom: 50%;
+    margin-bottom: 2.5rem;
+}
+
+.card-title {
+    font-size: 2rem;
+}
+
+.login-card {
+    background-color: #5e35b1 !important;
+    width: 35rem;
+}
+
+.main-icon {
+    margin-top: 1rem;
+    font-size: 5rem;
+}
+
+.btn-login {
+    background-color: #ffffff;
+    border-color: rgb(150, 162, 162);
+    color: black;
+}
+
+.btn-login:hover {
+    background-color: rgb(150, 162, 162) !important;
+    border-color: #ffffff !important;
+}
