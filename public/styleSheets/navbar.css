@@ -28,3 +28,8 @@
     background-color: white !important;
     color: black !important;
 }
+
+.dropdown-menu a:hover {
+    color: white;
+    background-color: #5e35b1;
+}

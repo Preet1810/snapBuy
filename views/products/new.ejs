@@ -1,62 +1,62 @@
 <% layout('layouts/boilerplate')%>
     <link rel="stylesheet" href="https://unpkg.com/@jarstone/dselect/dist/css/dselect.css">
     <link rel="stylesheet" href="/stylesheets/newproduct.css">
-
-    <form action="/products" method="POST" novalidate class="needs-validation" enctype="multipart/form-data">
-        <div class="card login-card text-bg-secondary">
-            <i class="fa-solid fa-box-open main-icon text-center"></i>
-            <div class="card-body">
-                <h5 class="card-title text-center">New Product</h5>
-                <div class="mb-3">
+    <div class="full-page">
+        <form action="/products" method="POST" novalidate class="needs-validation" enctype="multipart/form-data">
+            <div class="card login-card text-bg-secondary">
+                <i class="fa-solid fa-box-open main-icon text-center"></i>
+                <div class="card-body">
+                    <h5 class="card-title text-center">New Product</h5>
                     <div class="mb-3">
-                        <label class="form-label" for="title">Product Name</label>
-                        <input class="form-control" type="text" id="title" name="product[title]" required>
+                        <div class="mb-3">
+                            <label class="form-label" for="title">Product Name</label>
+                            <input class="form-control" type="text" id="title" name="product[title]" required>
+                        </div>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
                     </div>
-                    <div class="valid-feedback">
-                        Looks good!
+                    <div class="mb-3">
+                        <label for="selec_box">Select Category</label>
+                        <select class="form-select mt-2" name="product[categories]" id="select_box">
+                            <option data-subtext="custom">Electronics</option>
+                            <option data-subtext="mustard">Food and Beverages</option>
+                            <option data-subtext="frosting">Fashion</option>
+                            <option data-subtext="more">Mobiles</option>
+                            <option data-subtext="more1">Grocery</option>
+                            <option data-subtext="more2">Appliances</option>
+                            <option data-subtext="more3">Books</option>
+                            <option data-subtext="more3">Stationery And Office Supplies</option>
+                            <option data-subtext="more3">Auto Accessories</option>
+                            <option data-subtext="more3">Safety And Hygiene Essentials</option>
+                            <option data-subtext="more3">Grooming</option>
+                            <option data-subtext="more3">Sports And Fitness</option>
+                        </select>
                     </div>
-                </div>
-                <div class="mb-3">
-                    <label for="selec_box">Select Category</label>
-                    <select class="form-select mt-2" name="product[categories]" id="select_box">
-                        <option data-subtext="custom">Electronics</option>
-                        <option data-subtext="mustard">Food and Beverages</option>
-                        <option data-subtext="frosting">Fashion</option>
-                        <option data-subtext="more">Mobiles</option>
-                        <option data-subtext="more1">Grocery</option>
-                        <option data-subtext="more2">Appliances</option>
-                        <option data-subtext="more3">Books</option>
-                        <option data-subtext="more3">Stationery And Office Supplies</option>
-                        <option data-subtext="more3">Auto Accessories</option>
-                        <option data-subtext="more3">Safety And Hygiene Essentials</option>
-                        <option data-subtext="more3">Grooming</option>
-                        <option data-subtext="more3">Sports And Fitness</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="form-label">Choose Images</label>
-                    <div class="form-file custom-file">
-                        <input class="form-control custom-file-input" type="file" id="image" name="image" multiple
-                            onchange="previewMultiple(event)">
-                        <label for="image" class="form-label custom-file-label"></label>
+                    <div>
+                        <label class="form-label">Choose Images</label>
+                        <div class="form-file custom-file">
+                            <input class="form-control custom-file-input" type="file" id="image" name="image" multiple
+                                onchange="previewMultiple(event)">
+                            <label for="image" class="form-label custom-file-label"></label>
+                        </div>
+                        <div id="formFile"></div>
                     </div>
-                    <div id="formFile"></div>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="price">Product Price</label>
-                    <div class="input-group">
-                        <span class="input-group-text" id="price-label">₹</span>
-                        <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price"
-                            aria-describedby="price-label" name="product[price]" required>
+                    <div class="mb-3">
+                        <label class="form-label" for="price">Product Price</label>
+                        <div class="input-group">
+                            <span class="input-group-text" id="price-label">₹</span>
+                            <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price"
+                                aria-describedby="price-label" name="product[price]" required>
+                        </div>
                     </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="description">Description</label>
+                        <textarea class="form-control" type="text" id="description" name="product[description]"
+                            required></textarea>
+                    </div>
+                    <button class=" btn btn-success btn-login">Add Product</button>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label" for="description">Description</label>
-                    <textarea class="form-control" type="text" id="description" name="product[description]"
-                        required></textarea>
-                </div>
-                <button class=" btn btn-success btn-login">Add Product</button>
             </div>
-        </div>
-
-        <script src="/javascripts/newProduct.js"></script>
+    </div>
+    <script src="/javascripts/newProduct.js"></script>

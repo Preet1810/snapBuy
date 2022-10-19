@@ -40,7 +40,6 @@ route.post('/login/buyer', passport.authenticate('userLocal', { failureFlash: tr
     // req.user.isBuyer=true;
     req.flash('success', 'Welcome Back');
     const redirectUrl=req.session.returnTo||"/products";
-    delete req.session.returnTo;
     res.redirect(redirectUrl);
 });
 

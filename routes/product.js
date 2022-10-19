@@ -71,6 +71,7 @@ route.get('/:id', catchAsync(async (req, res) => {
             path: "reviewFromUser reviewFromSeller",
         }
     }).populate('author')
+    req.session.returnTo=req.originalUrl
     // await product.reviews.populate('author')
     //console.log(product.reviews)          //show page  populating reviews so that those object id will also have the body of review
     // console.log(product.reviews)

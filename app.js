@@ -12,6 +12,8 @@ const session=require('express-session'); //
 const flash=require('connect-flash');
 const ExpressError=require('./utils/ExpressErrors');
 const methodOverride=require('method-override');
+const mongoSanitize=require('express-mongo-sanitize');
+const helmet=require('helmet');
 
 const products=require('./routes/product');
 const categories=require('./routes/categories');
@@ -56,7 +58,12 @@ app.use(methodOverride('_method'));
 //setting up public directory
 app.use(express.static(__dirname+'/public'));
 
+app.use(mongoSanitize({
+    replaceWith: '_'
+}))
+
 const sessionConfig={
+    name: 'ivd23SS33',
     secret: 'Asecret',
     resave: false,
     saveUninitialized: true,
@@ -67,9 +74,56 @@ const sessionConfig={
 }
 app.use(session(sessionConfig))
 app.use(flash());
+app.use(helmet());
+
+const scriptSrcUrls=[
+    "https://stackpath.bootstrapcdn.com/",
+    "https://kit.fontawesome.com",
+    "https://code.jquery.com/",
+    "https://cdnjs.cloudflare.com/",
+    "https://cdn.jsdelivr.net/",
+    "https://ajax.googleapis.com",
+    "https://unpkg.com/",
+    "https://use.fontawesome.com/",
+
+];
+const styleSrcUrls=[
+    "https://kit-free.fontawesome.com/",
+    "https://stackpath.bootstrapcdn.com/",
+    "https://fonts.googleapis.com/",
+    "https://use.fontawesome.com/",
+    "https://cdn.jsdelivr.net/",
+
+];
+const connectSrcUrls=["https://ka-f.fontawesome.com"];
+const fontSrcUrls=["https://ka-f.fontawesome.com"];
+
+app.use(
+    helmet.contentSecurityPolicy({
+        directives: {
+            defaultSrc: [],
+            connectSrc: ["'self'", ...connectSrcUrls],
+            scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
+            styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
+            // fontSrc: ["'self'", "'unsafe-inline'", ...fontSrcUrls],
+            workerSrc: ["'self'", "blob:"],
+            objectSrc: [],
+            imgSrc: [
+                "'self'",
+                "blob:",
+                "data:",
+                "https://res.cloudinary.com/dwh4llt0c/", //SHOULD MATCH YOUR CLOUDINARY ACCOUNT! 
+                "https://images.unsplash.com/",
+            ],
+            fontSrc: ["'self'", ...fontSrcUrls],
+        },
+    })
+);
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+
 
 // passport.use(new LocalStrategy(User.authenticate(), Seller.authenticate()));
 

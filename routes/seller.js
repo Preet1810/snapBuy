@@ -36,7 +36,6 @@ route.post('/login/seller', passport.authenticate('sellerLocal', { failureFlash:
     req.user.isSeller=true;
     req.flash('success', 'yooooo');
     const redirectUrl=req.session.returnTo||"/products";
-    delete req.session.returnTo;
     res.redirect(redirectUrl);
 });
 

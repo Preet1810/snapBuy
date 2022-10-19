@@ -17,7 +17,8 @@
                                 <% for(let product of products) {%>
                                     <div class="col">
                                         <div class="card text-bg-light">
-                                            <img src="<%= product.images[0].indexImage %> " class="card-img-top" alt="">
+                                            <img src="<%= product.images[0].indexImage %> " class="card-img-top" alt=""
+                                                crossorigin="anonymous">
                                             <div class="card-body">
                                                 <h5 class="card-title">
                                                     <a href="/products/<%= product._id %> " id="productname">
@@ -43,21 +44,24 @@
                                                         class="btn btn-primary btn-sm view-details">View Details</a>
                                                 </div>
 
+                                                <% if (currentUser) {%>
+                                                    <button type="button" class="inli btn btn-primary btn-sm modalbtn"
+                                                        data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                        Enquiry
+                                                    </button>
+                                                    <% }else{ %>
+                                                        <a href="/login/buyer"
+                                                            class="inli btn btn-primary btn-sm modalbtn">Enquiry</a>
+                                                        <% } %>
+                                                            <p class="card-text seller">
+                                                                <a href="/seller/<%= product.author.companyname %>">
 
-                                                <button type="button" class="inli btn btn-primary btn-sm modalbtn"
-                                                    data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                    Enquiry
-                                                </button>
+                                                                    <b id="sellername">
+                                                                        <%= product.author.companyname %>
+                                                                    </b>
 
-                                                <p class="card-text seller">
-                                                    <a href="/seller/<%= product.author.companyname %>">
-
-                                                        <b id="sellername">
-                                                            <%= product.author.companyname %>
-                                                        </b>
-
-                                                    </a>
-                                                </p>
+                                                                </a>
+                                                            </p>
                                             </div>
                                         </div>
                                     </div>
