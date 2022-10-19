@@ -12,11 +12,12 @@ $(document).ready(function () {
     });
 })
 
-
+document.getElementsByClassName('pagenation')[0].addEventListener("click", GetURL());
 
 function GetURL() {
     const list=document.querySelectorAll(".pagination li a");
     const curr=document.URL
+    // console.log(curr)
     for (let b=0; b<list.length; b++) {
         if (curr.includes('search=')) {
             if (curr.includes('page=')) {
@@ -28,7 +29,7 @@ function GetURL() {
             }
         }
         else {
-            list[b].href=list[b].href+b;
+            list[b].href=list[b].href+list[b].innerText;
         }
     }
 }

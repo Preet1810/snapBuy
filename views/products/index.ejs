@@ -1,6 +1,6 @@
 <% layout('layouts/boilerplate')%>
     <link rel="stylesheet" href="/styleSheets/indexImages.css">
-    <script src="/javascripts/index.js"></script>
+
 
     <div class="mt-4">
         <% if(noMatch !==null) { %>
@@ -142,7 +142,7 @@
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center mt-4">
             <li class="prev page-item" style="display: none;">
-                <a class="page-link" id="less" href="#" onclick="GetURL()" aria-label="Previous">
+                <a class="page-link" id="less" href="#" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
@@ -150,14 +150,13 @@
                 <% for(let num=0; response.totalPages>=num; num++) {%>
                     <% if(num%9==0) {%>
                         <% PN++%>
-                            <li class="page-item"><a class="page-link " id="currUrl" href="/products?page="
-                                    onclick="GetURL()">
+                            <li class="page-item"><a class="page-link pagenation" id="currUrl" href="/products?page=">
                                     <%= PN %>
                                 </a></li>
                             <% } %>
                                 <% } %>
                                     <li class="next page-item" style="display: none;">
-                                        <a class="page-link" aria-label="Next" href="#" onclick="GetURL()">
+                                        <a class="page-link" aria-label="Next" href="#">
                                             <span aria-hidden="true">&raquo;</span>
                                         </a>
                                     </li>
@@ -173,3 +172,4 @@
             console.log(list[b]);
         }
     </script> -->
+    <script src="/javascripts/index.js"></script>

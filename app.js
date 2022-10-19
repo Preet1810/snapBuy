@@ -29,10 +29,6 @@ const LocalStrategy=require('passport-local');
 const User=require('./model/user');
 const Seller=require('./model/seller');
 
-// const { find, moreFind }=require('./middleware');
-
-
-
 
 mongoose.connect('mongodb://localhost:27017/snapbuy', {
     useNewUrlParser: true,
@@ -72,6 +68,8 @@ const sessionConfig={
         maxAge: 1000*60*60*24*7
     }
 }
+
+
 app.use(session(sessionConfig))
 app.use(flash());
 app.use(helmet());
@@ -83,7 +81,7 @@ const scriptSrcUrls=[
     "https://cdnjs.cloudflare.com/",
     "https://cdn.jsdelivr.net/",
     "https://ajax.googleapis.com",
-    "https://unpkg.com/",
+    "https://unpkg.com/ ",
     "https://use.fontawesome.com/",
 
 ];
@@ -93,10 +91,11 @@ const styleSrcUrls=[
     "https://fonts.googleapis.com/",
     "https://use.fontawesome.com/",
     "https://cdn.jsdelivr.net/",
+    "https://unpkg.com/",
 
 ];
-const connectSrcUrls=["https://ka-f.fontawesome.com"];
-const fontSrcUrls=["https://ka-f.fontawesome.com"];
+const connectSrcUrls=["https://ka-f.fontawesome.com", "https://unpkg.com/"];
+const fontSrcUrls=["https://ka-f.fontawesome.com", "https://unpkg.com/"];
 
 app.use(
     helmet.contentSecurityPolicy({
@@ -141,23 +140,10 @@ passport.deserializeUser(function (user, done) {
         done(null, user);
 });
 
-// passport.serializeUser(Seller.serializeUser(), User.serializeUser());
-// passport.deserializeUser(Seller.deserializeUser(), User.deserializeUser());
-
-// passport.serializeUser(User.serializeUser());
-// passport.deserializeUser(User.deserializeUser());
-// const idk=async (req, res, next) => {
-//     if (User.authenticate()) {
-//         res.locals.currentBuyer=req.user;
-//     }
-//     // res.locals.currentSeller=req.user;
-//     console.log(res.locals.currentBuyer);
-//     next();
-// }
 
 
 app.use((req, res, next) => {                             //these are globals, i have access to them in everysingle template
-    console.log(req.session)
+    // console.log(req.session)
     res.locals.currentUser=req.user
     // console.log(res.locals.currentUser); 
     // res.locals.reviewAuthor=author;

@@ -84,7 +84,7 @@ route.get('/:id', catchAsync(async (req, res) => {
 
 route.get('/:id/edit', isLoggedIn, isSeller, isAuthor, catchAsync(async (req, res) => {
     const product=await Product.findById(req.params.id)      //edit form
-    console.log(product)
+    // console.log(product)
     if (!product) {
         req.flash('error', 'Cannot find that Product!');
         return res.redirect('/products')

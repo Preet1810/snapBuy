@@ -1,5 +1,5 @@
 <% layout('layouts/boilerplate')%>
-    <script src="/javascripts/categories.js"></script>
+
     <link rel="stylesheet" href="/styleSheets/categories.css">
     <div class="mt-4">
         <h1 class="">
@@ -9,7 +9,8 @@
             <% for(let catPages of catPage) {%>
                 <div class="col">
                     <div class="card text-bg-light h-100">
-                        <img src="<%= catPages.images[0].indexImage %> " class="card-img-top" alt="">
+                        <img src="<%= catPages.images[0].indexImage %> " class="card-img-top" alt=""
+                            crossorigin="anonymous">
                         <div class="card-body">
                             <h5 class="card-title">
                                 <a id="productname" href="/products/<%= catPages._id %> ">
@@ -131,7 +132,7 @@
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center mt-4">
             <li class="prev page-item" style="display: none;">
-                <a class="page-link" id="less" href="#" onclick="GetURL()" aria-label="Previous">
+                <a class="page-link" id="less" href="#" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
@@ -139,15 +140,16 @@
                 <% for(let num=0; response.totalPages>=num; num++) {%>
                     <% if(num%9==0) {%>
                         <% PN++%>
-                            <li class="page-item"><a class="page-link" id="currUrl" href="" onclick="GetURL()">
+                            <li class="page-item"><a class="page-link pagenation" id="currUrl" href="">
                                     <%= PN %>
                                 </a></li>
                             <% } %>
                                 <% } %>
                                     <li class="next page-item" style="display: none;">
-                                        <a class="page-link" aria-label="Next" href="#" onclick="GetURL()">
+                                        <a class="page-link" aria-label="Next" href="#">
                                             <span aria-hidden="true">&raquo;</span>
                                         </a>
                                     </li>
         </ul>
     </nav>
+    <script src="/javascripts/categories.js"></script>

@@ -1,8 +1,24 @@
-const config={
-    search: true, // Toggle search feature. Default: false
-    creatable: false, // Creatable selection. Default: false
-    clearable: true, // Clearable selection. Default: false
-    maxHeight: '180px', // Max height for showing scrollbar. Default: 360px
-    size: '', // Can be "sm" or "lg". Default ''
+$(function () {
+    $('.form-select').selectpicker();
+});
+
+document.getElementsByClassName('previewMultiple')[0].addEventListener("change", previewMultiple)
+
+
+function previewMultiple(event) {
+    const images=document.getElementById("image");
+    const number=images.files.length;
+    for (i=0; i<number; i++) {
+        const urls=URL.createObjectURL(event.target.files[i]);
+        document.getElementById("formFile").innerHTML+='<img src="'+urls+'">';
+    }
 }
-dselect(document.querySelector('#select_box'), config)
+
+// const config={
+//     search: true, // Toggle search feature. Default: false
+//     creatable: false, // Creatable selection. Default: false
+//     clearable: true, // Clearable selection. Default: false
+//     maxHeight: '180px', // Max height for showing scrollbar. Default: 360px
+//     size: '', // Can be "sm" or "lg". Default ''
+// }
+// dselect(document.querySelector('#select_box'), config)

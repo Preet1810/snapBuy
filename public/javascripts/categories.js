@@ -1,6 +1,10 @@
+
+document.getElementsByClassName('pagenation')[0].addEventListener("click", GetURL());
+
 function GetURL() {
     const list=document.querySelectorAll(".pagination li a");
     const curr=document.URL
+    // console.log(curr)
     for (let b=0; b<list.length; b++) {
         if (curr.includes('page=')) {
             let newCurr=curr.slice(0, -1);

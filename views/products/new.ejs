@@ -1,6 +1,7 @@
 <% layout('layouts/boilerplate')%>
-    <link rel="stylesheet" href="https://unpkg.com/@jarstone/dselect/dist/css/dselect.css">
+    <!-- <link rel="stylesheet" href="/dselect-main/source/css/dselect.scss"> -->
     <link rel="stylesheet" href="/stylesheets/newproduct.css">
+
     <div class="full-page">
         <form action="/products" method="POST" novalidate class="needs-validation" enctype="multipart/form-data">
             <div class="card login-card text-bg-secondary">
@@ -18,7 +19,8 @@
                     </div>
                     <div class="mb-3">
                         <label for="selec_box">Select Category</label>
-                        <select class="form-select mt-2" name="product[categories]" id="select_box">
+                        <select class="form-select mt-2" name="product[categories]" id="select_box"
+                            data-live-search="true">
                             <option data-subtext="custom">Electronics</option>
                             <option data-subtext="mustard">Food and Beverages</option>
                             <option data-subtext="frosting">Fashion</option>
@@ -36,9 +38,9 @@
                     <div>
                         <label class="form-label">Choose Images</label>
                         <div class="form-file custom-file">
-                            <input class="form-control custom-file-input" type="file" id="image" name="image" multiple
-                                onchange="previewMultiple(event)">
-                            <label for="image" class="form-label custom-file-label"></label>
+                            <input class="form-control custom-file-input previewMultiple" type="file" id="image"
+                                name="image" multiple="multiple"">
+                            <label for=" image" class="form-label custom-file-label"></label>
                         </div>
                         <div id="formFile"></div>
                     </div>
@@ -59,4 +61,5 @@
                 </div>
             </div>
     </div>
-    <script src="/javascripts/newProduct.js"></script>
+    <!-- <script src="/dselect-main/source/js/dselect.js" nonce="helloWorld"></script> -->
+    <script src="/javascripts/newproduct.js"></script>

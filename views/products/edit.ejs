@@ -1,5 +1,4 @@
 <% layout('layouts/boilerplate')%>
-    <link rel="stylesheet" href="https://unpkg.com/@jarstone/dselect/dist/css/dselect.css">
     <link rel="stylesheet" href="/stylesheets/editing.css">
     <div class="row mt-4">
         <h1 class="text-center">Edit Product</h1>
@@ -34,8 +33,8 @@
                 <div>
                     <label class="form-label">Choose Image(s)</label>
                     <div class="form-file custom-file">
-                        <input class="form-control custom-file-input" type="file" id="image" name="image" multiple
-                            onchange="previewMultiple(event)">
+                        <input class="form-control custom-file-input previewMultiple" type="file" id="image"
+                            name="image" multiple>
                         <label for="image" class="form-label custom-file-label"></label>
                     </div>
                     <div id="formFile"></div>
@@ -75,14 +74,4 @@
             <a href="/products">All Products</a>
         </div>
     </div>
-
-    <script src="https://unpkg.com/@jarstone/dselect/dist/js/dselect.js"></script>
-
-    <script> const config={
-            search: true, // Toggle search feature. Default: false
-            creatable: false, // Creatable selection. Default: false
-            clearable: true, // Clearable selection. Default: false
-            maxHeight: '180px', // Max height for showing scrollbar. Default: 360px
-            size: '', // Can be "sm" or "lg". Default ''
-        }
-        dselect(document.querySelector('#select_box'), config)</script>
+    <script src="/javascripts/editing.js"></script>

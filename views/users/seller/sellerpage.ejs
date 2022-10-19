@@ -1,12 +1,12 @@
 <% layout('layouts/boilerplate')%>
     <link rel="stylesheet" href="/styleSheets/sellerpage.css">
-    <script src="/javascripts/sellerPage.js"></script>
     <h1>Company Profile</h1>
 
     <div class="card text-bg-light mb-3 seller" style="max-width: 2000px;">
         <div class="row g-0">
             <div class="col-md-4">
-                <img src="<%= seller[0].image %> " class="img-fluid rounded-start seller-img" alt="...">
+                <img src="<%= seller[0].image %> " class="img-fluid rounded-start seller-img" alt="..."
+                    crossorigin="anonymous">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
@@ -38,7 +38,7 @@
         <% for(let product of products) {%>
             <div class="col">
                 <div class="product-card card">
-                    <img src="<%= product.images[0].indexImage %> " class="card-img-top" alt="">
+                    <img src="<%= product.images[0].indexImage %> " class="card-img-top" alt="" crossorigin="anonymous">
                     <div class="card-body text-bg-light">
                         <h5 class="card-title">
                             <a href="/products/<%= product._id %> " id="productname">
@@ -160,7 +160,7 @@
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center mt-4">
             <li class="prev page-item" style="display: none;">
-                <a class="page-link" id="less" href="#" onclick="GetURL()" aria-label="Previous">
+                <a class="page-link" id="less" href="#" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
@@ -168,15 +168,17 @@
                 <% for(let num=0; response.totalPages>=num; num++) {%>
                     <% if(num%9==0) {%>
                         <% PN++%>
-                            <li class="page-item"><a class="page-link" id="currUrl" href="" onclick="GetURL()">
+                            <li class="page-item"><a class="page-link pagenation" id="currUrl" href="">
                                     <%= PN %>
                                 </a></li>
                             <% } %>
                                 <% } %>
                                     <li class="next page-item" style="display: none;">
-                                        <a class="page-link" aria-label="Next" href="#" onclick="GetURL()">
+                                        <a class="page-link" aria-label="Next" href="#">
                                             <span aria-hidden="true">&raquo;</span>
                                         </a>
                                     </li>
         </ul>
     </nav>
+
+    <script src="/javascripts/sellerPage.js"></script>

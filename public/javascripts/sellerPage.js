@@ -15,6 +15,7 @@ $(document).ready(function () {
 function form_submit() {
     document.getElementById("search_form").submit();
 }
+document.getElementsByClassName('pagenation')[0].addEventListener("click", GetURL());
 
 function GetURL() {
     const list=document.querySelectorAll(".pagination li a");

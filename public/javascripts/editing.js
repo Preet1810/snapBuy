@@ -1,8 +1,11 @@
+document.getElementsByClassName('previewMultiple')[0].addEventListener("change", previewMultiple)
+
+
 function previewMultiple(event) {
-    var images=document.getElementById("image");
-    var number=images.files.length;
+    const images=document.getElementById("image");
+    const number=images.files.length;
     for (i=0; i<number; i++) {
-        var urls=URL.createObjectURL(event.target.files[i]);
+        const urls=URL.createObjectURL(event.target.files[i]);
         document.getElementById("formFile").innerHTML+='<img src="'+urls+'">';
     }
 }
