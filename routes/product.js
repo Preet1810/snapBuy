@@ -30,6 +30,7 @@ route.get('/', catchAsync(async (req, res) => {
         if (totalPages<1) {
             noMatch="No Products match that query, please try again.";
         }
+        req.session.returnTo=req.originalUrl
         res.render('products/index', { response, products, noMatch });
     } else {
         const page=parseInt(req.query.page)-1||0;
@@ -43,6 +44,7 @@ route.get('/', catchAsync(async (req, res) => {
             page: page+1,
             limit,
         };
+        req.session.returnTo=req.originalUrl
         res.render('products/index', { products, noMatch, response });
     }
 }))
@@ -71,7 +73,7 @@ route.get('/:id', catchAsync(async (req, res) => {
             path: "reviewFromUser reviewFromSeller",
         }
     }).populate('author')
-    req.session.returnTo=req.originalUrl
+
     // await product.reviews.populate('author')
     //console.log(product.reviews)          //show page  populating reviews so that those object id will also have the body of review
     // console.log(product.reviews)
@@ -79,6 +81,7 @@ route.get('/:id', catchAsync(async (req, res) => {
         req.flash('error', 'Cannot find that Product!');
         return res.redirect('/products')
     }
+    req.session.returnTo=req.originalUrl
     res.render('products/show', { product });
 }))
 

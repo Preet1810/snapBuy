@@ -12,9 +12,13 @@ $(document).ready(function () {
     });
 })
 
-function form_submit() {
-    document.getElementById("search_form").submit();
-}
+const form_modal=document.getElementById("search_form");
+const btn=document.getElementById("submit_but");
+btn.addEventListener("click", function () {
+    form_modal.submit();
+});
+
+
 document.getElementsByClassName('pagenation')[0].addEventListener("click", GetURL());
 
 function GetURL() {

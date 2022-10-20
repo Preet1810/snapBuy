@@ -16,8 +16,9 @@ route.post('/', isLoggedIn, validateEnquiry, catchAsync(async (req, res) => {
     await seller[0].save();
     await enquiry.save();
     req.flash('success', 'Successfully Sent Enquiry to Seller');
-    res.redirect(`/products`);
-    console.log(enquiry)
+    const redirectUrl=req.session.returnTo||"/products";
+    res.redirect(redirectUrl);
+    // console.log(enquiry)
     // console.log(seller)
 }))
 

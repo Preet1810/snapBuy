@@ -24,7 +24,7 @@ const seedDB=async () => {
         const random1000=Math.floor(Math.random()*199);
         const price=Math.floor(Math.random()*30)
         const prudu=new Product({
-            author: '634af02e46ea386d9a4e0e9b',
+            author: '63518b649da5d8d2a3e4e82b',
             location: `${cities[random1000].name}, ${cities[random1000].state}`,
             title: `${sample(descriptors)} ${sample(places)}`,
             images: [
@@ -41,6 +41,7 @@ const seedDB=async () => {
             price,
             sellerName: `${sample(descriptors)}`,
             categories: `${sample(categories)}`,
+            contactNumber: '23423424322'
 
         })
         // const categ=new Category({

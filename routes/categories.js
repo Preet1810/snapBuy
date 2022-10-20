@@ -21,6 +21,7 @@ route.get('/:id', catchAsync(async (req, res) => {
         page: page+1,
         limit,
     };
+    req.session.returnTo=req.originalUrl
     res.render('products/category', { catPage, response });
 }))
 

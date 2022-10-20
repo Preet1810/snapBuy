@@ -16,9 +16,7 @@ function GetURL() {
     }
 }
 
-function form_submit() {
-    document.getElementById("search_form").submit();
-}
+
 
 $(document).ready(function () {
     $(document).on('click', '.modalbtn', function () {
@@ -33,3 +31,9 @@ $(document).ready(function () {
 
     });
 })
+
+const form_modal=document.getElementById("search_form");
+const btn=document.getElementById("submit_but");
+btn.addEventListener("click", function () {
+    form_modal.submit();
+});

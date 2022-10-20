@@ -23,7 +23,7 @@ route.post('/register/seller', upload.array('image'), catchAsync(async (req, res
             if (err) return next(err);
             req.user.isSeller=true;
             req.flash('success', 'Welcome to SnapBuy');
-            res.redirect('/products');
+            res.redirect('/seller/dashboard');
         })
     } catch (e) {
         req.flash('error', e.message);

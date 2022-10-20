@@ -36,7 +36,7 @@ route.post('/seller/company', isLoggedIn, isSeller, upload.array('image'), catch
             await seller.save();
         }
         req.flash('success', 'Successfully Edited Your Profile');
-        res.redirect(`/seller/${seller.companyname}`);
+        res.redirect('/seller/dashboard');
     }
     catch (e) {
         req.flash('error', e.message)

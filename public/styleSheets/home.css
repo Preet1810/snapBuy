@@ -99,6 +99,11 @@ body {
     opacity: 0.85
 }
 
+.dropdown-menu a:hover {
+    color: white;
+    background-color: #5e35b1;
+}
+
 
 .slideshow {
     position: fixed;

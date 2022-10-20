@@ -44,7 +44,7 @@ module.exports.isLoggedIn=(req, res, next) => {
             req.session.returnTo=req.originalUrl
             req.flash('error', 'You Must Be Signed In');
         }
-        return res.redirect('/login/seller')
+        return res.redirect('/login/buyer')
     }
     next()
 }
