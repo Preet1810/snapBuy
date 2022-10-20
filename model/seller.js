@@ -2,6 +2,11 @@ const mongoose=require('mongoose');
 const Schema=mongoose.Schema;
 const passportLocalMongoose=require('passport-local-mongoose');
 
+const logoSchema=new Schema({
+    url: String,
+    filename: String
+});
+
 const SellerSchema=new Schema({
     proprietorname: {
         type: String,
@@ -35,7 +40,7 @@ const SellerSchema=new Schema({
         }
     ],
 
-    image: String,
+    image: [logoSchema],
     aboutcompany: String,
     nature: String
 });

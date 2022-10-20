@@ -17,3 +17,40 @@
     background-color: #5e35b1;
     color: #F0F8FF;
 }
+
+.full-page {
+    margin-top: 3rem;
+    right: 50%;
+    top: 50%;
+    left: 50%;
+    bottom: 50%;
+    margin-bottom: 2.5rem;
+}
+
+.login-card {
+    background-color: #5e35b1 !important;
+}
+
+.main-icon {
+    margin-top: 1rem;
+    font-size: 3rem;
+}
+
+.btn-login {
+    background-color: rgb(150, 162, 162);
+    border-color: rgb(150, 162, 162);
+}
+
+.btn-login:hover {
+    background-color: #5e35b1 !important;
+    border-color: #ffffff !important;
+}
+
+.change-logo {
+    display: block;
+    margin: 0 auto;
+    width: 250px;
+    height: 150px;
+    background-position: center center;
+    background-repeat: no-repeat;
+}

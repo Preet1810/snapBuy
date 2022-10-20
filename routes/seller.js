@@ -3,17 +3,22 @@ const passport=require('passport');
 const route=express.Router();
 const Seller=require('../model/seller');
 const catchAsync=require('../utils/catchAsync')
+const multer=require('multer');
+const { storage, cloudinary }=require('../cloudinary');
+const upload=multer({ storage });
 // const { find }=require('../middleware');
 
 route.get('/register/seller', (req, res) => {
     res.render('users/seller/sellerRegister')
 });
 
-route.post('/register/seller', catchAsync(async (req, res, next) => {
+route.post('/register/seller', upload.array('image'), catchAsync(async (req, res, next) => {
     try {
         const { proprietorname, companyname, address, contactNumber, email, nature, image, aboutcompany, username, password }=req.body;
         const seller=new Seller({ proprietorname, companyname, address, contactNumber, email, nature, image, aboutcompany, username });
+        seller.image=req.files.map(f => ({ url: f.path, filename: f.filename }));
         const registeredSeller=await Seller.register(seller, password);
+        // console.log(registeredSeller)
         req.login(registeredSeller, err => {                              //after registering it logins the registered user
             if (err) return next(err);
             req.user.isSeller=true;

@@ -7,6 +7,11 @@ const Seller=require('../model/seller');
 const Enquiry=require('../model/enquiry')
 const { isLoggedIn, isSeller }=require('../middleware')
 
+const multer=require('multer');
+const { storage, cloudinary }=require('../cloudinary');
+const { findById }=require('../model/products');
+const upload=multer({ storage });
+
 route.get('/seller/dashboard', isLoggedIn, isSeller, catchAsync(async (req, res) => {
     const totalProducts=await Product.find({ author: (`${req.user._id}`) })
     const currentSeller=await Seller.findById((`${req.user._id}`))
@@ -18,11 +23,19 @@ route.get('/seller/company', isLoggedIn, isSeller, catchAsync(async (req, res) =
     res.render('users/seller/company', { seller })
 }))
 
-route.post('/seller/company', isLoggedIn, isSeller, catchAsync(async (req, res) => {
-    // res.send(req.body);
+route.post('/seller/company', isLoggedIn, isSeller, upload.array('image'), catchAsync(async (req, res) => {
     try {
         const seller=await Seller.findByIdAndUpdate(`${req.user._id}`, req.body);
-        req.flash('success', 'Successfully Edited the Product');
+        if (req.files.length>0) {
+            const realSeller=await Seller.findById(`${req.user._id}`);
+            const filename=realSeller.image[0].filename;
+            await cloudinary.uploader.destroy(filename);
+            await Seller.findByIdAndUpdate(`${req.user._id}`, { $set: { image: [] } });
+            const imgs=req.files.map(f => ({ url: f.path, filename: f.filename }));
+            seller.image.push(...imgs);
+            await seller.save();
+        }
+        req.flash('success', 'Successfully Edited Your Profile');
         res.redirect(`/seller/${seller.companyname}`);
     }
     catch (e) {

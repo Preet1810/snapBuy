@@ -6,6 +6,7 @@ document.getElementsByClassName('previewMultiple')[0].addEventListener("change",
 
 
 function previewMultiple(event) {
+    document.getElementById("formFile").innerHTML="";
     const images=document.getElementById("image");
     const number=images.files.length;
     for (i=0; i<number; i++) {

@@ -17,69 +17,102 @@
         </li>
     </ul>
 
-    <form action="/seller/company" method="POST" class="validated-form" novalidate>
-        <h3>Edit Company Profile</h3>
-        <div class="mb-3">
-            <label class="form-label" for="proprietorname">Proprietor Name</label>
-            <input class="form-control" type="text" id="proprietorname" name="proprietorname"
-                value="<%=seller.proprietorname%>" required>
-            <div class="valid-feedback">
-                Looks good!
+    <div class="full-page">
+        <form class="needs-validation" action="/seller/company" method="POST" novalidate enctype="multipart/form-data">
+            <div class="card login-card text-bg-secondary">
+
+                <div class="card-body">
+
+                    <h2 class="card-title text-center">Edit Company Profile</h2>
+                    <h3>Business Information</h3>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label" for="companyname">Company Name</label>
+                            <input class="form-control" type="text" id="companyname" name="companyname" required
+                                value="<%=seller.companyname%>">
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="proprietorname">Proprietor Name</label>
+                            <input class="form-control" type="text" id="proprietorname" name="proprietorname" required
+                                value="<%=seller.proprietorname%>">
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+                        <div class=" col-md-6">
+                            <label class="form-label" for="address">Address</label>
+                            <input class="form-control" type="text" id="address" name="address" required
+                                value="<%=seller.address%>">
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="nature">Nature of Business</label>
+                            <input class="form-control" type="text" id="nature" name="nature" required
+                                value="<%=seller.nature%>">
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <img class="change-logo" src="<%= seller.image[0].url %> " alt="" crossorigin="anonymous">
+                        </div>
+                        <div class="col-md-9">
+                            <label class="form-label">Change Logo</label>
+                            <div class="form-file custom-file">
+                                <input class="form-control custom-file-input" type="file" id="image" name="image">
+                                <label for=" image" class="form-label custom-file-label"></label>
+                            </div>
+                            <div id="formFile"></div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label class="form-label" for="aboutcompany">About Company</label>
+                            <textarea class="form-control" name="aboutcompany" id="aboutcompany" cols="30" rows="3"
+                                required><%=seller.aboutcompany%></textarea>
+                        </div>
+                        <h3 style="margin-bottom: -0.65rem;">Login Information</h3>
+                        <div class="col-md-6">
+                            <label class="form-label" for="contactNumber">Contact Number</label>
+                            <input class="form-control" type="text" id="contactNumber" name="contactNumber" required
+                                value="<%=seller.contactNumber%>">
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <div class=" col-md-6">
+                            <label class="form-label" for="email">Email</label>
+                            <input class="form-control" type="email" id="email" name="email" required
+                                value="<%=seller.email%>">
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="username">Username</label>
+                            <input class="form-control" type="text" id="username" name="username" required
+                                value="<%=seller.username%>">
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-6">
+                            <label class="form-label" for="password">Password</label>
+                            <input class="form-control" type="password" id="password" name="password" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div> -->
+                        <button type="" class="btn btn-success btn-login">Edit</button>
+
+                    </div>
+
+                </div>
             </div>
-        </div>
-        <div class="mb-3">
-            <label class="form-label" for="companyname">Company Name</label>
-            <input class="form-control" type="text" id="companyname" name="companyname" value="<%=seller.companyname%>"
-                required>
-            <div class="valid-feedback">
-                Looks good!
-            </div>
-        </div>
-        <div class="mb-3">
-            <label class="form-label" for="nature">Nature of Business</label>
-            <input class="form-control" type="text" id="nature" name="nature" value="<%=seller.nature%>" required>
-            <div class="valid-feedback">
-                Looks good!
-            </div>
-        </div>
-        <div class="mb-3">
-            <label class="form-label" for="image">Company Logo</label>
-            <input class="form-control" type="text" id="image" name="image" required>
-        </div>
-        <div class="mb-3">
-            <label class="form-label" for="aboutcompany">About Company</label>
-            <textarea class="form-control" name="aboutcompany" id="aboutcompany" cols="30" rows="3"
-                required><%=seller.aboutcompany%></textarea>
-        </div>
-        <div class="mb-3">
-            <label class="form-label" for="address">Address</label>
-            <input class="form-control" type="text" id="address" name="address" value="<%=seller.address%>" required>
-            <div class="valid-feedback">
-                Looks good!
-            </div>
-        </div>
-        <div class="mb-3">
-            <label class="form-label" for="contactnumber">Contact Number</label>
-            <input class="form-control" type="text" id="contactnumber" name="contactnumber"
-                value="<%=seller.contactnumber%>" required>
-            <div class="valid-feedback">
-                Looks good!
-            </div>
-        </div>
-        <div class="mb-3">
-            <label class="form-label" for="email">Email</label>
-            <input class="form-control" type="email" id="email" name="email" value="<%=seller.email%>" required>
-            <div class="valid-feedback">
-                Looks good!
-            </div>
-        </div>
-        <div class="mb-3">
-            <label class="form-label" for="username">Username</label>
-            <input class="form-control" type="email" id="username" name="username" value="<%=seller.username%>"
-                required>
-            <div class="valid-feedback">
-                Looks good!
-            </div>
-        </div>
-        <button class="btn btn-success">Edit Changes</button>
-    </form>
+        </form>
+    </div>

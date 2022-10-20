@@ -4,8 +4,8 @@ const catchAsync=require('../utils/catchAsync')
 const ExpressError=require('../utils/ExpressErrors');
 const Product=require('../model/products');
 const { isLoggedIn, isAuthor, validateProduct, isSeller }=require('../middleware');
-const Seller=require('../model/seller');
-const User=require('../model/user');
+// const Seller=require('../model/seller');
+// const User=require('../model/user');
 
 const multer=require('multer');
 const { storage, cloudinary }=require('../cloudinary');

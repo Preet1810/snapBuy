@@ -1,7 +1,7 @@
 <% layout('layouts/boilerplate')%>
     <link rel="stylesheet" href="/styleSheets/sellerRegister.css">
     <div class="full-page">
-        <form class="needs-validation" action="/register/seller" method="POST" novalidate>
+        <form class="needs-validation" action="/register/seller" method="POST" novalidate enctype="multipart/form-data">
             <div class="card login-card text-bg-secondary">
 
                 <div class="card-body">
@@ -38,9 +38,14 @@
                                 Looks good!
                             </div>
                         </div>
-                        <div class=" col-md-12">
-                            <label class="form-label" for="image">Company Logo</label>
-                            <input class="form-control" type="text" id="image" name="image" required>
+                        <div>
+                            <label class="form-label">Add Logo</label>
+                            <div class="form-file custom-file">
+                                <input class="form-control custom-file-input previewMultiple" type="file" id="image"
+                                    name="image"">
+                                <label for=" image" class="form-label custom-file-label"></label>
+                            </div>
+                            <div id="formFile"></div>
                         </div>
                         <div class="col-md-12">
                             <label class="form-label" for="aboutcompany">About Company</label>
@@ -84,3 +89,5 @@
             </div>
         </form>
     </div>
+
+    <script src="/javascripts/newproduct.js"></script>
