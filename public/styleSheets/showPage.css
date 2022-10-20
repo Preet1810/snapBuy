@@ -1,15 +1,32 @@
 .main-card {
     width: 600px;
-    height: 777px;
+    height: 845px;
     background-position: center center;
     background-repeat: no-repeat;
 }
 
-.main-img {
+/* .main-img {
     display: block;
     margin: 0 auto;
     width: 550px;
     height: 550px;
+    background-position: center center;
+    background-repeat: no-repeat;
+} */
+.card-img-top {
+    margin-top: 0.5;
+    display: block;
+    margin: 0 auto;
+    width: 550px;
+    height: 450px;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.description {
+    margin-left: 0.5rem;
+    width: 550px;
+    height: 100px;
     background-position: center center;
     background-repeat: no-repeat;
 }
@@ -25,7 +42,7 @@
 .card-title {
     margin-top: 1rem;
     display: inline-block;
-    margin-bottom: 1.5rem;
+    margin-left: 0.5rem;
 }
 
 .seller-btns {
@@ -55,9 +72,6 @@
     border-color: rgb(186, 59, 59) !important;
 }
 
-.description {
-    margin-bottom: 10rem;
-}
 
 .modalbtn {
     margin-top: 0.5rem;
@@ -78,7 +92,7 @@
 
 .list-group {
     font-size: 18px;
-    margin-top: -1rem;
+    margin-top: 0.25rem;
     margin-left: -0.5rem;
 }
 

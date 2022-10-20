@@ -4,7 +4,7 @@ $(document).ready(function () {
         const sellername=$(this).closest('div').find('#sellername').text();
         const nproduct=productname.replace(/\s+/g, ' ').trim();
         const nseller=sellername.replace(/\s+/g, ' ').trim();
-        console.log(nproduct)
+        // console.log(nproduct)
         $('#exampleModal').modal('show')
         $('#pname').val(nproduct);
         $('#sname').val(nseller);
