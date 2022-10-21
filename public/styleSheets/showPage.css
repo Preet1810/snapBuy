@@ -57,6 +57,7 @@
 }
 
 .edit-btn:hover {
+    color: aliceblue !important;
     background-color: #5e35b1 !important;
     border-color: #5e35b1 !important;
 }
