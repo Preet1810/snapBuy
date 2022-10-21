@@ -39,7 +39,7 @@ route.get('/login/seller', (req, res) => {
 })
 route.post('/login/seller', passport.authenticate('sellerLocal', { failureFlash: true, failureRedirect: '/login/seller', keepSessionInfo: true, }), (req, res) => { //a authentication middleware by passport you can add google fb twiiter too insted of just local
     req.user.isSeller=true;
-    req.flash('success', 'yooooo');
+    req.flash('success', 'Welcome Back');
     const redirectUrl=req.session.returnTo||"/products";
     res.redirect(redirectUrl);
 });

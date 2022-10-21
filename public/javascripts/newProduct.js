@@ -1,6 +1,6 @@
-$(function () {
-    $('.form-select').selectpicker();
-});
+// $(function () {
+//     $('.form-select').selectpicker();
+// });
 
 document.getElementsByClassName('previewMultiple')[0].addEventListener("change", previewMultiple)
 
