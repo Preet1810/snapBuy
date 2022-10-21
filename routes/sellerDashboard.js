@@ -83,7 +83,7 @@ route.get('/seller/:id', catchAsync(async (req, res) => {
         page: page+1,
         limit,
     };
-    res.render('users/seller/sellerPage', { seller, products, response })
+    res.render('users/seller/sellerpage', { seller, products, response })
 }))
 
 
