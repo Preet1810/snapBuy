@@ -14,7 +14,7 @@ route.post('/', isLoggedIn, validateReview, catchAsync(async (req, res) => {
     product.reviews.push(review);
     await product.save();
     await review.save();
-    console.log(review)
+    // console.log(review)
     req.flash('success', 'Successfully Made A New Review');
     res.redirect(`/products/${product._id}`);
 
