@@ -49,13 +49,13 @@ const app=express();
 
 app.engine('ejs', ejsMate)  //boilerplate
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'))  //setting up views directory
+app.set('views', path.join(__dirname, 'views'));  //setting up views directory
 
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 //setting up public directory
-app.use(express.static(__dirname+'/public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(mongoSanitize({
     replaceWith: '_'
