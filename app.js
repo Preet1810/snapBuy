@@ -29,8 +29,12 @@ const LocalStrategy=require('passport-local');
 const User=require('./model/user');
 const Seller=require('./model/seller');
 
+const MongoStore=require('connect-mongo');
 
-mongoose.connect('mongodb://localhost:27017/snapbuy', {
+const dbUrl=process.env.DB_URL||'mongodb://localhost:27017/snapbuy';
+
+// mongodb://localhost:27017/snapbuy
+mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
@@ -58,7 +62,20 @@ app.use(mongoSanitize({
     replaceWith: '_'
 }))
 
+const secret=process.env.SECRET||'Asecret';
+
+const store=MongoStore.create({
+    mongoUrl: dbUrl,
+    secret,
+    touchAfter: 24*60*60 //24hours
+})
+
+store.on("error", function (e) {
+    console.log("SESSION STORE ERROR", e)
+})
+
 const sessionConfig={
+    store,
     name: 'ivd23SS33',
     secret: 'Asecret',
     resave: false,
