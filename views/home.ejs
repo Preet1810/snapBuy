@@ -22,57 +22,69 @@
     <main class="container mt-5">
         <script src="https://kit.fontawesome.com/cad4c8ddee.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="/styleSheets/home.css">
-        <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
+        <nav class="navbar fixed-top navbar-expand-lg ">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/">SnapBuy</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mb-2 mb-lg-0">
 
-                        <a class="nav-link" style="color:white" href="/products">Products</a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/products">Products</a>
+                        </li>
                         <% if(currentUser && currentUser.isSeller) {%>
-                            <a class="nav-link" style="color:white" href="/products/new">New Product</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/products/new">New Product</a>
+                            </li>
                             <% } %>
-                    </div>
-                    <!-- <div class="navbar-nav ms-auto">
-                        <form action="/products" method="GET" class="form-inline">
-                            <div class="form-group search-pro">
-                                <input type="text" name="search" placeholder=" Search..."
-                                    class="form-control search-form">
-                                <input type="submit" value="Search" class="btn btn-default search-btn">
-                            </div>
-                        </form>
-                    </div> -->
-                    <div class="navbar-nav ms-auto">
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
                         <% if(!currentUser) {%>
-                            <a class="nav-link" href="/register/seller" style="color:white">Add Your Business</a>
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false" style="color:white">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/register/seller">Add Your Business</a>
+                            </li>
+                            <li class=" nav-item dropdown ">
+                                <a class=" nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
                                     Login
-                                </button>
+                                </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="/login/seller">Login as Seller</a></li>
-                                    <li><a class="dropdown-item" href="/login/buyer">Login as Buyer</a></li>
+                                    <li><a class="dropdown-item" href="/login/buyer">Buyer</a></li>
+                                    <li><a class="dropdown-item" href="/login/seller">Seller</a></li>
                                 </ul>
-                            </div>
-                            <a href="/register" class="nav-link" style="color:white">Register</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/register">Register</a>
+                            </li>
                             <% } else if(currentUser && currentUser.isSeller) {%>
-                                <a class="icon" href="/seller/dashboard"><i class="fa-solid fa-user fa-2xl"></i></a>
-                                <a href="/logout" class="nav-link" style="color:white">Logout</a>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/seller/dashboard">Dashboard </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/logout">Logout</a>
+                                </li>
                                 <% }else{ %>
-                                    <a class="nav-link" href="/register/seller" style="color:white">Add Your
-                                        Business</a>
-                                    <a href="/logout" class="nav-link" style="color:white">Logout</a>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/register/seller">Add Your
+                                            Business</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/logout">Logout</a>
+                                    </li>
                                     <% } %>
-
-                    </div>
+                    </ul>
+                    <!-- <form class="d-flex ms-auto" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form> -->
                 </div>
             </div>
         </nav>
+
 
         <div id="landing-header">
             <div class="card main-card">
@@ -88,7 +100,7 @@
                         </form>
                     </div>
                     <h6>Trending Categories</h6>
-                    <div class="btn-group d-flex justify-content-center">
+                    <div class="btn-group">
                         <a href="/products/categories/Appliances" class="btn btn-dark">Appliances</a>
                         <a href="/products/categories/Electronics" class="btn btn-dark">Electronics</a>
                         <a href="products/categories/Sports%20And%20Fitness" class="btn btn-dark">Sports</a>
@@ -100,7 +112,8 @@
                     </div>
                     <h6>About Us</h6>
                     <div class="card-text text-center">
-                        <p>Greetings from SnapBuy, I Created this App to show my skill in web development. If you
+                        <p class="about-text">Greetings from SnapBuy, I Created this App to show my skill in web
+                            development. If you
                             enjoyed it and would like to work with me, please get in touch with me at
                             preetpalsingh1239@gmail.com. This application serves only to publicise my work. The
                             information on it is completely bogus. SnapBuy is a B2B portal & onlinebusiness directory.
@@ -116,16 +129,17 @@
                 </div>
             </div>
         </div>
-
-        <ul class="slideshow">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
-
     </main>
+
+    <ul class="slideshow">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
         crossorigin="anonymous"></script>

@@ -1,53 +1,90 @@
 <script src="https://kit.fontawesome.com/cad4c8ddee.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/styleSheets/navbar.css">
 
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark">
+<nav class="navbar fixed-top navbar-expand-lg ">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">SnapBuy</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-link" style="color:white" href="/products">Products</a>
-                <% if(currentUser && currentUser.isSeller) {%>
-                    <a class="nav-link" style="color:white" href="/products/new">New Product</a>
-                    <% } %>
-            </div>
-            <div class="navbar-nav ms-auto">
-                <form action="/products" method="GET" class="form-inline">
-                    <div class="form-group search-pro d-flex justify-content-center">
-                        <input type="text" name="search" placeholder=" Search..." class="form-control search-form">
-                        <input type="submit" value="Search" class="btn btn-default search-btn">
-                    </div>
-                </form>
-            </div>
-            <div class="navbar-nav ms-auto">
-                <% if(!currentUser) {%>
-                    <a class="nav-link" href="/register/seller" style="color:white">Add Your Business</a>
-                    <div class="dropdown">
-                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false" style="color:white">
-                            Login
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/login/seller">Login as Seller</a></li>
-                            <li><a class="dropdown-item" href="/login/buyer">Login as Buyer</a></li>
-                        </ul>
-                    </div>
-                    <a href="/register" class="nav-link" style="color:white">Register</a>
-                    <% } else if(currentUser && currentUser.isSeller) {%>
-                        <a class="icon" href="/seller/dashboard"><i class="fa-solid fa-user fa-2xl"
-                                crossorigin="anonymous"></i></a>
-                        <a href="/logout" class="nav-link" style="color:white">Logout</a>
-                        <% }else{ %>
-                            <a class="nav-link" href="/register/seller" style="color:white">Add Your
-                                Business</a>
-                            <a href="/logout" class="nav-link" style="color:white">Logout</a>
-                            <% } %>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mb-2 mb-lg-0">
 
-            </div>
+                <li class="nav-item">
+                    <a class="nav-link" href="/products">Products</a>
+                </li>
+                <!-- <div class="justify-content-center"> -->
+
+                <!-- </div> -->
+                <% if(currentUser && currentUser.isSeller) {%>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/products/new">New Product</a>
+                    </li>
+                    <% } %>
+            </ul>
+            <form action="/products" method="GET" class="form-inline ms-auto">
+                <div class="form-group search-pro search-nav d-flex">
+                    <input type="text" name="search" placeholder=" Search for Products..."
+                        class="form-control search-form">
+                    <input type="submit" value="Search" class="btn btn-default search-btn">
+                </div>
+            </form>
+            <ul class="navbar-nav ms-auto">
+                <% if(!currentUser) {%>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register/seller">Add Your Business</a>
+                    </li>
+                    <li class=" nav-item dropdown ">
+                        <a class=" nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Login
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/login/buyer">Buyer</a></li>
+                            <li><a class="dropdown-item" href="/login/seller">Seller</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register">Register</a>
+                    </li>
+                    <% } else if(currentUser && currentUser.isSeller) {%>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/seller/dashboard">Dashboard </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/logout">Logout</a>
+                        </li>
+                        <% }else{ %>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/register/seller">Add Your
+                                    Business</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/logout">Logout</a>
+                            </li>
+                            <% } %>
+            </ul>
+            <!-- <div class="whole-form"> -->
+            <!-- <form class="search-form flex-grow" role="search">
+                <input class="form-control me-2 " type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form> -->
+            <!-- </div> -->
+            <!-- <form class="d-flex ms-auto" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form> -->
         </div>
     </div>
 </nav>
+
+
+<!-- <div class="navbar-nav ms-auto">
+    <form action="/products" method="GET" class="form-inline">
+        <div class="form-group search-pro d-flex justify-content-center">
+            <input type="text" name="search" placeholder=" Search..." class="form-control search-form">
+            <input type="submit" value="Search" class="btn btn-default search-btn">
+        </div>
+    </form>
+</div> -->

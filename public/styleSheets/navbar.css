@@ -1,4 +1,4 @@
-.icon {
+/* .icon {
     color: white;
     margin-top: 0.5rem;
     margin-right: 1rem;
@@ -32,4 +32,63 @@
 .dropdown-menu a:hover {
     color: white;
     background-color: #5e35b1;
+} */
+
+.navbar {
+    background-color: #5e35b1;
+}
+
+.navbar a {
+    color: aliceblue;
+}
+
+.navbar-toggler-icon {
+    color: aliceblue;
+}
+
+.dropdown-menu {
+    background-color: #000;
+}
+
+.dropdown-menu a:hover {
+    color: white;
+    background-color: #5e35b1;
+}
+
+/* .search-form {
+    width: 30rem;
+}
+
+.search-btn {
+    margin-bottom: 0.25rem;
+    margin-left: 1rem;
+    color: white;
+    border-color: black;
+    background-color: black;
+} */
+
+
+.search-form {
+    /* display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 1rem; */
+    width: 30rem;
+}
+
+@media (max-width:984px) {
+    .search-form {
+        width: 15rem;
+    }
+}
+
+.search-btn {
+    /* margin-bottom: 0.25rem; */
+    margin-left: 1rem;
+    color: white;
+    border-color: black;
+    background-color: black;
+    /* margin-top: 2rem;
+    margin-bottom: 1rem; */
 }

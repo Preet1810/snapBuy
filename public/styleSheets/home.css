@@ -8,6 +8,7 @@
     box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.5);
 } */
 
+
 h5 {
     text-align: center;
     color: white;
@@ -23,10 +24,13 @@ h6 {
 
 p {
     color: white;
-    font-size: 1rem !important;
+
 }
 
 .btn-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 1rem;
 }
 
@@ -43,15 +47,23 @@ p {
     background-color: #5e35b1;
 }
 
-.icon {
-    color: white;
-    margin-top: 0.5rem;
-    margin-right: 1rem;
+.navbar a {
+    color: aliceblue;
 }
 
-.icon:hover {
-    color: black;
+.navbar-toggler-icon {
+    color: aliceblue;
 }
+
+.dropdown-menu {
+    background-color: #000;
+}
+
+.dropdown-menu a:hover {
+    color: white;
+    background-color: #5e35b1;
+}
+
 
 
 .search-form {
@@ -87,11 +99,13 @@ body {
 }
 
 .main-card {
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
     margin: 0 auto;
     /* Added */
     float: none;
     /* Added */
-    margin-bottom: 10px;
     /* Added */
     /* height: 50rem; */
     margin-top: 4rem;
@@ -99,11 +113,13 @@ body {
     opacity: 0.85
 }
 
-.dropdown-menu a:hover {
-    color: white;
-    background-color: #5e35b1;
-}
 
+
+
+/* .dropdown {
+    display: block;
+    float: right;
+} */
 
 .slideshow {
     position: fixed;
@@ -178,4 +194,24 @@ body {
 /* Older browser support - .no-cssanimations class added by modernizr */
 .no-cssanimations .slideshow li {
     opacity: 1;
+}
+
+@media (max-width:803px) {
+    h5 {
+        font-size: 4rem !important;
+    }
+
+    h6 {
+        font-size: 2rem !important;
+    }
+}
+
+@media (max-width:564px) {
+    h5 {
+        font-size: 3rem !important;
+    }
+
+    .btn-group a {
+        font-size: 09px;
+    }
 }
