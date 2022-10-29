@@ -35,6 +35,7 @@ const MongoStore=require('connect-mongo');
 // const dbUrl='mongodb://localhost:27017/snapbuy';
 const dbUrl=process.env.DB_URL;
 
+
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
