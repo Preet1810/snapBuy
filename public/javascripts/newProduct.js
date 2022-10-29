@@ -15,6 +15,14 @@ function previewMultiple(event) {
     }
 }
 
+const form_product=document.getElementById("add_product");
+const btn=document.getElementById("submit_but");
+btn.addEventListener("click", function () {
+    form_product.submit();
+});
+
+
+
 // const config={
 //     search: true, // Toggle search feature. Default: false
 //     creatable: false, // Creatable selection. Default: false

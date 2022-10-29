@@ -3,8 +3,10 @@
     <link rel="stylesheet" href="/styleSheets/newproduct.css">
 
     <div class="full-page">
-        <form action="/products" method="POST" novalidate class="needs-validation" enctype="multipart/form-data">
+        <form action="/products" method="POST" novalidate class="needs-validation" enctype="multipart/form-data"
+            id="add_product">
             <div class="card login-card text-bg-secondary">
+
                 <i class="fa-solid fa-box-open main-icon text-center"></i>
                 <div class="card-body">
                     <h5 class="card-title text-center">New Product</h5>
@@ -57,9 +59,12 @@
                         <textarea class="form-control" type="text" id="description" name="product[description]"
                             required></textarea>
                     </div>
-                    <button class=" btn btn-success btn-login">Add Product</button>
+                    <button class="btn btn-success btn-login" id="submit_but">Add Product</button>
                 </div>
+
             </div>
+        </form>
+
     </div>
     <!-- <script src="/dselect-main/source/js/dselect.js" nonce="helloWorld"></script> -->
     <script src="/javascripts/newProduct.js"></script>

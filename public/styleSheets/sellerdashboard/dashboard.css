@@ -23,10 +23,20 @@
 }
 
 .card-img-top {
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+
     width: 400px;
     height: 300px;
     background-position: center center;
     background-repeat: no-repeat;
+}
+
+.col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .card {
@@ -51,4 +61,39 @@ a:hover {
 .card-text {
     text-decoration: none;
     text-align: center;
+}
+
+@media (max-width:1423px) {
+    .card-img-top {
+        width: 250px;
+        height: 150px;
+    }
+
+    .card {
+        width: 20rem;
+        height: 18rem;
+    }
+}
+
+@media (max-width:987px) {
+    .card-img-top {
+        width: 200px;
+        height: 150px;
+    }
+
+    .card {
+        width: 15rem;
+        height: 13rem;
+    }
+
+    h3 {
+        padding: 0;
+        margin: 0;
+        font-size: 1rem;
+    }
+
+    p {
+        font-size: 0.80rem;
+    }
+
 }

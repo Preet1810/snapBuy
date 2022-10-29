@@ -1,4 +1,4 @@
-.login-card {
+/* .login-card {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -6,6 +6,20 @@
     transform: translate(-50%, -50%);
     background-color: #5e35b1 !important;
     width: 25rem;
+} */
+
+.fullpage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-card {
+    margin-top: 10rem;
+    background-color: #5e35b1 !important;
+    width: 20rem;
+    /* width: 90% !important; */
+    /* width: 35rem; */
 }
 
 .main-icon {

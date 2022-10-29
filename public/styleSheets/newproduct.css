@@ -11,13 +11,32 @@
     opacity: 85%;
 }
 
+.login-card {
+    margin-top: 3rem;
+    background-color: #5e35b1 !important;
+    width: 40rem;
+    /* width: 90% !important; */
+    /* width: 35rem; */
+}
+
+@media (max-width:717px) {
+    .login-card {
+        width: fit-content;
+    }
+}
+
 .full-page {
-    margin-left: 23rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-left: 23rem;
     margin-top: 3rem;
     right: 50%;
     top: 50%;
     left: 50%;
     bottom: 50%;
+    margin-bottom: 2.5rem; */
     margin-bottom: 2.5rem;
 }
 
@@ -25,10 +44,7 @@
     font-size: 2rem;
 }
 
-.login-card {
-    background-color: #5e35b1 !important;
-    width: 35rem;
-}
+
 
 .main-icon {
     margin-top: 1rem;

@@ -3,7 +3,8 @@ h1 {
     margin-bottom: 2rem;
 }
 
-h2 {
+.heading {
+    text-align: center;
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
@@ -17,7 +18,6 @@ h2 {
 
 
 .card-img-top {
-
     margin-top: 1rem !important;
     display: block;
     margin: 0 auto;
@@ -30,7 +30,6 @@ h2 {
 .seller-img {
     width: 550px;
     height: 300px;
-    margin-top: 3.5rem;
 }
 
 #productname {
@@ -107,4 +106,69 @@ h2 {
 
 .inli {
     display: inline-block;
+}
+
+@media (max-width:1408px) {
+    .heading {
+        font-size: 1.25rem;
+        text-align: center;
+    }
+
+    .product-card {
+        width: 300px;
+        height: 420px;
+    }
+
+    .card-img-top {
+        width: 250px;
+        height: 140px;
+    }
+
+    #productname {
+        font-size: 1rem;
+    }
+
+    .description {
+        width: 270px;
+        height: 50px;
+        font-size: 0.75rem;
+    }
+
+    .category {
+        margin-top: 4rem;
+        font-size: 0.75rem;
+    }
+
+    .contactnum {
+        margin-top: -3rem;
+        font-size: 0.75rem;
+    }
+
+    .view-details {
+        height: 25px;
+        width: 40px;
+        font-size: 10px;
+        text-align: center;
+    }
+
+    .modalbtn {
+        height: 25px;
+        width: 51px;
+        font-size: 10px;
+        text-align: center;
+    }
+
+    .seller a {
+        font-size: 0.80rem;
+    }
+
+}
+
+@media (max-width:747px) {
+    .col {
+        display: flex;
+        align-items: center;
+        justify-content: center !important;
+    }
+
 }

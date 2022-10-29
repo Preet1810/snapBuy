@@ -1,6 +1,8 @@
 if (process.env.NODE_ENV!=="production") {
     require('dotenv').config();
 }
+
+
 // console.log(process.env.idk)
 
 
@@ -30,8 +32,8 @@ const User=require('./model/user');
 const Seller=require('./model/seller');
 
 const MongoStore=require('connect-mongo');
-const dbUrl='mongodb://localhost:27017/snapbuy';
-// const dbUrl=process.env.DB_URL;
+// const dbUrl='mongodb://localhost:27017/snapbuy';
+const dbUrl=process.env.DB_URL;
 
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,

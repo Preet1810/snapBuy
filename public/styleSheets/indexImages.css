@@ -1,9 +1,19 @@
+.mt-4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 .card {
     width: 400px;
     height: 575px;
     background-position: center center;
     background-repeat: no-repeat;
 }
+
+
+
 
 
 .card-img-top {
@@ -15,6 +25,8 @@
     background-position: center center;
     background-repeat: no-repeat;
 }
+
+
 
 #productname {
     margin-left: 0.5rem;
@@ -39,10 +51,14 @@
     background-repeat: no-repeat;
 }
 
+
+
 .category {
     margin-top: 3.5rem;
     margin-left: 0.5rem;
 }
+
+
 
 #cata {
     text-decoration: none;
@@ -54,6 +70,8 @@
     margin-right: 10px;
     margin-left: 0.5rem;
 }
+
+
 
 .view-details {
     background-color: rgb(150, 162, 162);
@@ -76,6 +94,8 @@
     border-color: #5e35b1 !important;
 }
 
+
+
 .seller a {
     text-decoration: none;
     color: black;
@@ -87,6 +107,68 @@
 
 }
 
+
+
 .inli {
     display: inline-block;
+}
+
+@media (max-width:1408px) {
+    .card {
+        width: 300px;
+        height: 420px;
+    }
+
+    .card-img-top {
+        width: 250px;
+        height: 140px;
+    }
+
+    #productname {
+        font-size: 1rem;
+    }
+
+    .description {
+        width: 270px;
+        height: 50px;
+        font-size: 0.75rem;
+    }
+
+    .category {
+        margin-top: 4rem;
+        font-size: 0.75rem;
+    }
+
+    .contactnum {
+        margin-top: -3rem;
+        font-size: 0.75rem;
+    }
+
+    .view-details {
+        height: 25px;
+        width: 40px;
+        font-size: 10px;
+        text-align: center;
+    }
+
+    .modalbtn {
+        height: 25px;
+        width: 51px;
+        font-size: 10px;
+        text-align: center;
+    }
+
+    .seller a {
+        font-size: 0.80rem;
+    }
+
+}
+
+@media (max-width:747px) {
+    .col {
+        display: flex;
+        align-items: center;
+        justify-content: center !important;
+    }
+
 }
